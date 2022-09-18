@@ -17,8 +17,10 @@ module.exports = (
       return `<meta ${key}="${v}" content="${content}" />`
     })
     .filter((exists) => exists)
-const remoteStylesCleaned = typeof remoteStyles === 'string' ? [remoteStyles] : remoteStyles
-const remoteScriptsCleaned = typeof remoteScripts === 'string' ? [remoteScripts] : remoteScripts
+  const remoteStylesCleaned =
+    typeof remoteStyles === 'string' ? [remoteStyles] : remoteStyles
+  const remoteScriptsCleaned =
+    typeof remoteScripts === 'string' ? [remoteScripts] : remoteScripts
   return `
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
@@ -73,7 +75,9 @@ const remoteScriptsCleaned = typeof remoteScripts === 'string' ? [remoteScripts]
   }
   ${
     remoteScriptsCleaned.length
-      ? remoteScriptsCleaned.map((link) => `<script src="${link}"></script>`).join('')
+      ? remoteScriptsCleaned
+          .map((link) => `<script src="${link}"></script>`)
+          .join('')
       : ''
   }
 `
