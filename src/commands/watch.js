@@ -1,6 +1,6 @@
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
 const fs = require('fs')
-const { run } = require('./fiddly')
+const { run } = require('./oranda')
 
 module.exports = {
   name: 'watch',
@@ -16,8 +16,8 @@ module.exports = {
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
     const options = {
-      ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+      ...(packageJSON.oranda || {}),
+      ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
         {}),
     }
     const files = []

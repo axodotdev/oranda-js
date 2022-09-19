@@ -1,5 +1,5 @@
 const ghpages = require('gh-pages')
-const { run } = require('./fiddly')
+const { run } = require('./oranda')
 
 module.exports = {
   name: 'deploy',
@@ -16,8 +16,8 @@ module.exports = {
 
     const options = {
       ...{ dist: 'public' },
-      ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+      ...(packageJSON.oranda || {}),
+      ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
         {}),
     }
 

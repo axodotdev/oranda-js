@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "alias": "fiddly",
+  "alias": "oranda",
   "public": true,
   "builds": [
-    { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "public" } }
+    {
+      "src": "package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "public" }
+    }
   ]
 }

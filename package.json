@@ -1,9 +1,9 @@
 {
-  "name": "fiddly",
+  "name": "oranda",
   "description": "Create beautiful and simple HTML pages from your Readme.md files",
   "version": "0.10.0",
   "bin": {
-    "fiddly": "bin/fiddly.js"
+    "oranda": "bin/oranda.js"
   },
   "scripts": {
     "format": "prettier --write \"src/**/*.js\"",
@@ -11,13 +11,13 @@
     "posttest": "npm run format",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "build": "./bin/fiddly.js",
+    "build": "./bin/oranda.js",
     "prepublish": "npm run test",
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate",
     "now-build": "npm run build",
     "serve": "npx serve -l 3021",
-    "watch": "nodemon -e js,md --ignore public/ --ignore node_modules/ ./bin/fiddly.js",
+    "watch": "nodemon -e js,md --ignore public/ --ignore node_modules/ ./bin/oranda.js",
     "dev": "run-p serve watch"
   },
   "files": [
@@ -31,7 +31,7 @@
     "markdown",
     "static",
     "sites",
-    "fiddly"
+    "oranda"
   ],
   "author": {
     "name": "Sara Vieira",
@@ -81,13 +81,13 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "homepage": "https://github.com/SaraVieira/fiddly",
+  "homepage": "https://github.com/axodotdev/oranda",
   "bugs": {
-    "url": "https://github.com/SaraVieira/fiddly/issues",
+    "url": "https://github.com/axodotdev/oranda/issues",
     "email": "hey@iamsaravieira.com"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/SaraVieira/fiddly"
+    "url": "https://github.com/axodotdev/oranda"
   }
 }

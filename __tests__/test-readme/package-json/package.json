@@ -1,6 +1,6 @@
 {
   "name": "testpkg",
-  "fiddly": {
+  "oranda": {
     "dist": "testoutput",
     "styles": {
       "h1": {

@@ -6,7 +6,7 @@ const { build } = require('gluegun')
 async function run(argv) {
   // create a CLI runtime
   const cli = build()
-    .brand('fiddly')
+    .brand('oranda')
     .src(__dirname)
     .help() // provides default for help, h, --help, -h
     .version() // provides default for version, v, --version, -v

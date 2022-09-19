@@ -6,7 +6,7 @@ const imageminPngquant = require('imagemin-pngquant')
 const sass = require('node-sass')
 const createHTML = require('create-html')
 const corner = require('../utils/githubCorner')
-const fiddlyImports = require('../utils/fiddlyImports')
+const orandaImports = require('../utils/orandaImports')
 const head = require('../utils/head')
 const header = require('../utils/header')
 const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
@@ -76,7 +76,7 @@ const defaultOptions = {
 }
 
 module.exports = {
-  name: 'fiddly',
+  name: 'oranda',
   description: 'Build your static website from markdown',
   run: async (toolbox) => {
     const {
@@ -89,8 +89,8 @@ module.exports = {
 
     const options = {
       ...defaultOptions,
-      ...(packageJSON.fiddly || {}),
-      ...(filesystem.read(`${process.cwd()}/.fiddly.config.json`, 'json') ||
+      ...(packageJSON.oranda || {}),
+      ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
         {}),
     }
 
@@ -108,7 +108,7 @@ module.exports = {
 
       // If not read object and turn into css
       return toCss(options.styles, {
-        selector: (s) => `#fiddly ${s}`,
+        selector: (s) => `#oranda ${s}`,
         property: (p) =>
           p.replace(/([A-Z])/g, (matches) => `-${matches[0].toLowerCase()}`),
       })
@@ -231,7 +231,7 @@ module.exports = {
       const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : ''
       const html = createHTML({
         title,
-        css: fiddlyImports.css,
+        css: orandaImports.css,
         lang: 'en',
         head: head(
           description,
@@ -242,7 +242,7 @@ module.exports = {
           options.remoteStyles,
           options.remoteScripts
         ),
-        body: `<div id="fiddly"><div class="body ${dark}"><div class="container">${githubCorner}${header(
+        body: `<div id="oranda"><div class="body ${dark}"><div class="container">${githubCorner}${header(
           options,
           name,
           options.additionalFiles

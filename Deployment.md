@@ -39,11 +39,11 @@ To use Now, first create a file called `now.json` and put the following options 
 
 _The distDir folder may be a different one depending on the dist folder you selected_
 
-For Now to build fiddly when deploying, to ensure a fresh build for each deployment, add the following script to your `package.json` scripts list to let Now know to use fiddly to build your readme as the index.
+For Now to build oranda when deploying, to ensure a fresh build for each deployment, add the following script to your `package.json` scripts list to let Now know to use oranda to build your readme as the index.
 
 ```json
 {
-  "now-build": "fiddly"
+  "now-build": "oranda"
 }
 ```
 
@@ -62,25 +62,25 @@ After that pick and domain and done 🎉
 For GitHub pages there is a command:
 
 ```bash
-fiddly deploy
+oranda deploy
 ```
 
 This command will build your project if no version exists and deploy it to `gh-pages` branch on github.
-It uses [gh-pages](https://github.com/tschaub/gh-pages#options) under the hood so any options you pass there you can also pass in your `deployment` option in `.fiddly.config.json`.
+It uses [gh-pages](https://github.com/tschaub/gh-pages#options) under the hood so any options you pass there you can also pass in your `deployment` option in `.oranda.config.json`.
 ✨
 
 ## Gitlab Pages
 
 To deploy to Gitlab Pages add a new job with the title _pages_ in your `.gitlab-ci.yml` configuration file.
 Gitlab Pages hosts your static files at `https://<group-or-user-name>.gitlab.io/<project-name>`.
-You can use the `PATH_PREFIX` environment variable to configure your fiddly build.
+You can use the `PATH_PREFIX` environment variable to configure your oranda build.
 🎉
 
 ```yaml
 pages:
   image: node
   script:
-    - PATH_PREFIX="/$CI_PROJECT_NAME" npx fiddly
+    - PATH_PREFIX="/$CI_PROJECT_NAME" npx oranda
   artifacts:
     paths:
       - public

@@ -4,7 +4,7 @@ const src = filesystem.path(__dirname, '..')
 const success = 'Generated your static files at public/'
 
 const cli = async (cmd) =>
-  system.run('node ' + filesystem.path(src, 'bin', 'fiddly') + ` ${cmd}`)
+  system.run('node ' + filesystem.path(src, 'bin', 'oranda') + ` ${cmd}`)
 
 test('generates html', async () => {
   const output = await cli()
