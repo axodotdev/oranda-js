@@ -226,7 +226,6 @@ module.exports = {
         : (file.substring(file.lastIndexOf('/') + 1) || '').split('.md')[0]
 
       const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : ''
-
       const html = createHTML({
         title,
         css: fiddlyImports.css,
@@ -247,6 +246,7 @@ module.exports = {
         )}${md.render(markdown)}</div></div></div>`,
         favicon: options.favicon,
       })
+
       try {
         await filesystem.write(
           `${distFolder}/${fileName.toLowerCase()}.html`,

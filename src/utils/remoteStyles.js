@@ -4,14 +4,14 @@ const getRemoteStyles = async () => {
   const { data: normalize } = await axios.get(
     'https://unpkg.com/normalize.css@8.0.1/normalize.css'
   )
-  const { data: lato } = await axios.get(
-    'https://fonts.googleapis.com/css?family=Lato'
+  const { data: inter } = await axios.get(
+    'https://fonts.googleapis.com/css?family=Inter'
   )
-  const { data: playfair } = await axios.get(
-    'https://fonts.googleapis.com/css?family=Playfair+Display:700i,900'
+  const { data: comfortaa } = await axios.get(
+    'https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700'
   )
 
-  return normalize.concat(lato).concat(playfair)
+  return normalize.concat(inter).concat(comfortaa)
 }
 
 module.exports = getRemoteStyles
