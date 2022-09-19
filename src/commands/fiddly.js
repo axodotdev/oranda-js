@@ -32,6 +32,9 @@ md.linkify.tlds('.md', false)
 md.linkify.tlds('.MD', false)
 md.use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
   const aIndex = tokens[idx].attrIndex('target')
+  const hrefIndex = tokens[idx].attrIndex('href')
+
+  if (tokens[idx].attrs[hrefIndex][1].startsWith('#')) return
 
   if (aIndex < 0) {
     tokens[idx].attrPush(['target', '_blank'])

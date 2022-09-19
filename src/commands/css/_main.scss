@@ -10,6 +10,10 @@ body,
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin-top: -20px;
   font-family: 'Inter', sans-serif;
