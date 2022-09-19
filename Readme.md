@@ -1,219 +1,191 @@
-# Rover
+# Oranda
 
-> ✨ 🤖 🐶 the new CLI for apollo
+Create beautiful and simple HTML pages from your Readme.md files
 
-[![CircleCI Tests](https://circleci.com/gh/apollographql/rover.svg?style=svg)](https://app.circleci.com/pipelines/github/apollographql/rover?branch=main)
-[![GitHub Release Downloads](https://shields.io/github/downloads/apollographql/rover/total.svg)](https://github.com/apollographql/rover/releases/latest)
+- 🛠 No config
+- 👩‍💻 Code Highlighting
+- 💯 Emoji Support
+- ✨ Creates Static files (only JS is prism)
+- 🏳️‍🌈 Pretty Pages
+- 🦄 Customizable
+- 🖼 Image minification
+- 🧠 Custom Meta Tags
+- 🇳🇱 [CodeSandbox](https://codesandbox.io) and iframe Support
 
-This is the home of Rover, the new CLI for Apollo's suite of GraphQL developer productivity tools.
+```bash
+yarn add oranda --dev
+```
 
-### Note
-
-This `README` contains just enough info to get you started with Rover. Our [docs](https://go.apollo.dev/r/docs) contain more detailed information that should be your primary reference for all things Rover.
+```bash
+npm install oranda --save-dev
+```
 
 ## Usage
 
-A few useful Rover commands to interact with your graphs:
+```json
+{
+  ...
+  "scripts": {
+    "build:demo": "oranda",
+    ....
+  }
+```
 
-1. Fetch a graph from a federated remote endpoint.
+Deploy automatically to netlify 🎉
+
+[This Readme on Netlify](https://oranda.netlify.com/)
+
+[This Readme with white theme](https://5c2678b67b891f18dc5a2a42--oranda.netlify.com/)
+
+## Usage with npx
+
+<!-- markdownlint-disable -->
+
+If you just want a quick fancy HTML page from the Readme but don't care about running this in continuous deployment you can also use `npx` to run it as a one time thing.
+
+<!-- markdownlint-enable -->
 
 ```bash
-rover graph fetch test@cats
+  npx oranda
 ```
 
-1. Validate recent changes made to your local graph with `rover graph check`.
+By running this in the root folder you will also get a public folder
 
-```bash
-rover graph check --schema=./path-to-valid-sdl test@cats
+## Options
+
+Options are placed in a `.oranda.config.json` or as a `oranda` key in `package.json`.
+It can contain the following options:
+
+<!-- markdownlint-disable -->
+
+| Option          | Default                            | Description                                                                                                  |
+| --------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| file            | Readme.md, readme.md, or README.md | Your Readme.md name                                                                                          |
+| name            | name in package.json               | The project name that is in the title and the header                                                         |
+| logo            | ''                                 | The project logo that is in the header                                                                       |
+| shareCard       | ''                                 | URL to social media preview image for meta tags (recommended size: 1200x628, URL cannot be relative)         |
+| description     | description in package.json        | The project description for meta tags                                                                        |
+| homepage        | null                               | The project homepage for meta tags                                                                           |
+| noHeader        | false                              | Show no header and just the markdown content                                                                 |
+| darkTheme       | false                              | Dark theme ofc 🎉                                                                                            |
+| favicon         | ''                                 | Favicon url or local path                                                                                    |
+| dist            | public                             | To what folder to render your HTML                                                                           |
+| styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file                                                 |
+| additionalFiles | []                                 | Any other pages to create. It expects an array of paths of markdown files                                    |
+| repo            | null                               | Link to point the github corner                                                                              |
+| pathPrefix      | Environment var PATH_PREFIX or '/' | Host your oranda files at e.g. /my-oranda-project                                                            |
+| meta            | []                                 | Any extra meta tags you would like                                                                           |
+| remoteStyles    | []                                 | Array of any remote styles you want to include (eg: Google Fonts)                                            |
+| remoteScripts   | []                                 | Array of any remote scripts you want to include (eg: Google Analytics)                                       |
+| deployment      | {}                                 | Deployment options for github pages. Accepts all options [here](https://github.com/tschaub/gh-pages#options) |
+
+<!-- markdownlint-enable -->
+
+### Example of styles
+
+For styles you can either use a style object like so and that will override the
+default styles applied. Like so:
+
+```json
+{
+  "styles": {
+    "h1": {
+      "color": "blue",
+      "backgroundColor": "red"
+    }
+  }
+}
 ```
 
-1. Publish your local graph to Apollo Studio.
+Another option is to give the path to a local css or scss file.
+In this case you need to override any specificity issues.
+You can by using the `#oranda` id.
+Example:
 
-```bash
-rover graph publish --schema ./path-to-valid-schema test@cats
+```css
+body {
+  background: #fff;
+}
+
+#oranda {
+  h1 {
+    text-transform: uppercase;
+  }
+}
 ```
 
-## Command-line options
+## Meta Tags
 
-```sh
-Rover 0.8.2
-Apollo Developers <opensource@apollographql.com>
+To create any meta tags it uses an array system like so:
 
-Rover - Your Graph Companion
-Read the getting started guide by running:
-
-    $ rover docs open start
-
-To begin working with Rover and to authenticate with Apollo Studio,
-run the following command:
-
-    $ rover config auth
-
-This will prompt you for an API Key that can be generated in Apollo Studio.
-
-The most common commands from there are:
-
-    - rover graph fetch: Fetch a graph schema from the Apollo graph registry
-    - rover graph check: Check for breaking changes in a local graph schema against a graph schema
-in the Apollo graph
-registry
-    - rover graph publish: Publish an updated graph schema to the Apollo graph registry
-
-You can open the full documentation for Rover by running:
-
-    $ rover docs open
-
-USAGE:
-    rover [OPTIONS] <SUBCOMMAND>
-
-OPTIONS:
-        --client-timeout <CLIENT_TIMEOUT>
-            Configure the timeout length (in seconds) when performing HTTP(S) requests
-
-            [default: 30]
-
-    -h, --help
-            Print help information
-
-        --insecure-accept-invalid-certs
-            Accept invalid certificates when performing HTTPS requests.
-
-            You should think very carefully before using this flag.
-
-            If invalid certificates are trusted, any certificate for any site will be trusted for
-            use. This includes expired certificates. This introduces significant vulnerabilities,
-            and should only be used as a last resort.
-
-        --insecure-accept-invalid-hostnames
-            Accept invalid hostnames when performing HTTPS requests.
-
-            You should think very carefully before using this flag.
-
-            If hostname verification is not used, any valid certificate for any site will be trusted
-            for use from any other. This introduces a significant vulnerability to man-in-the-middle
-            attacks.
-
-    -l, --log <LOG_LEVEL>
-            Specify Rover's log level
-
-            [possible values: error, warn, info, debug, trace]
-
-        --output <OUTPUT_TYPE>
-            Specify Rover's output type
-
-            [default: plain]
-            [possible values: json, plain]
-
-    -V, --version
-            Print version information
-
-SUBCOMMANDS:
-    config
-            Configuration profile commands
-    docs
-            Interact with Rover's documentation
-    explain
-            Explain error codes
-    graph
-            Graph API schema commands
-    help
-            Print this message or the help of the given subcommand(s)
-    readme
-            Readme commands
-    subgraph
-            Subgraph schema commands
-    supergraph
-            Supergraph schema commands
-    update
-            Commands related to updating rover
+```json
+  "meta": [
+    { "name": "description", "content": "A cool page" },
+    { "property": "robots", "content": "robots.txt" }
+  ]
 ```
 
-This repo is organized as a [`cargo` workspace], containing several related projects:
+This will create the following HTML:
 
-- `rover`: Apollo's suite of GraphQL developer productivity tools
-- [`houston`]: utilities for configuring Rover
-- [`robot-panic`]: a fork of [`rust-cli/human-panic`] adjusted for Rover
-- [`rover-client`]: an HTTP client for making GraphQL requests for Rover
-- [`sputnik`]: a crate to aid in collection of anonymous data for Rust CLIs
-- [`timber`]: Rover's logging formatter
-
-[`cargo` workspace]: https://doc.rust-lang.org/book/ch14-03-cargo-workspaces.html
-[`houston`]: https://github.com/apollographql/rover/tree/main/crates/houston
-[`robot-panic`]: https://github.com/apollographql/rover/tree/main/crates/robot-panic
-[`rust-cli/human-panic`]: https://github.com/rust-cli/human-panic
-[`rover-client`]: https://github.com/apollographql/rover/tree/main/crates/rover-client
-[`sputnik`]: https://github.com/apollographql/rover/tree/main/crates/sputnik
-[`timber`]: https://github.com/apollographql/rover/tree/main/crates/timber
-
-## Installation Methods
-
-#### Linux and MacOS `curl | sh` installer
-
-To install the latest release of Rover:
-
-```bash
-curl -sSL https://rover.apollo.dev/nix/latest | sh
+```html
+<meta name="description" content="A cool page" />
+<meta property="robots" content="robots.txt" />
 ```
 
-To install a specific version of Rover (note the `v` prefixing the version number):
+The first key on the object can have any name and will be applied as presented, the second one must have the name of content and will work as presented above.
 
-> Note: If you're installing Rover in a CI environment, it's best to target a specific version rather than using the latest URL, since future major breaking changes could affect CI workflows otherwise.
+## Images
 
-```bash
-curl -sSL https://rover.apollo.dev/nix/v0.6.0 | sh
+Any images linked in your markdown that are local will be minified and copied to your dist folder.
+If some image is not found it will be ignored.
+
+## GitHub Corner
+
+The GitHub corner comes from either the `repo` option in your `.oranda.config.json`
+or from the repository url in your `package.json`.
+If none is present it will not be shown.
+
+## Lint
+
+oranda also exports a command to let you lint all the markdown files you specified.
+
+You can run this by using the `lint` command
+
+```json
+"lint:md" : "oranda lint"
 ```
 
-You will need `curl` installed on your system to run the above installation commands. You can get the latest version from [the curl downloads page](https://curl.se/download.html).
+## Deploy
 
-> Note: `rover supergraph compose` is currently not available for Alpine Linux. You may track the progress for supporting this command on Alpine in [this issue](https://github.com/apollographql/rover/issues/537).
+oranda also exports a command to let you deploy your new site to GitHub pages
 
-#### Windows PowerShell installer
+You can run this by using the `deploy` command
 
-```bash
-iwr 'https://rover.apollo.dev/win/latest' | iex
+```json
+"deploy" : "oranda deploy"
 ```
 
-To install a specific version of Rover (note the `v` prefixing the version number):
+Options for this can be passed in a `deployment` key in your config file.
+All options can be found here: [https://github.com/tschaub/gh-pages#options](https://github.com/tschaub/gh-pages#options)
 
-> Note: If you're installing Rover in a CI environment, it's best to target a specific version rather than using the latest URL, since future major breaking changes could affect CI workflows otherwise.
+## Acknowledgements
 
-```bash
-iwr 'https://rover.apollo.dev/win/v0.6.0' | iex
-```
+- Base styles from [medium.css](https://github.com/lucagez/medium.css)
+- Logo from [OpenMoji](http://www.openmoji.org/library.html?search=beautiful&emoji=2728)
 
-#### npm installer
+## Contributors
 
-Rover is distributed on npm for easy integration with your JavaScript projects.
+<!-- markdownlint-disable -->
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore -->
+| [<img src="https://avatars0.githubusercontent.com/u/1051509?v=4" width="100px;"/><br /><sub><b>Sara Vieira</b></sub>](http://iamsaravieira.com)<br />[💻](https://github.com/axodotdev/oranda/commits?author=SaraVieira "Code") [🎨](#design-SaraVieira "Design") [🤔](#ideas-SaraVieira "Ideas, Planning, & Feedback") | [<img src="https://avatars2.githubusercontent.com/u/4772980?v=4" width="100px;"/><br /><sub><b>Bruno Scheufler</b></sub>](https://brunoscheufler.com)<br />[💻](https://github.com/axodotdev/oranda/commits?author=BrunoScheufler "Code") | [<img src="https://avatars0.githubusercontent.com/u/1863771?v=4" width="100px;"/><br /><sub><b>Siddharth Kshetrapal</b></sub>](https://sid.studio)<br />[💻](https://github.com/axodotdev/oranda/commits?author=siddharthkp "Code") | [<img src="https://avatars3.githubusercontent.com/u/1479215?v=4" width="100px;"/><br /><sub><b>Jamon Holmgren</b></sub>](https://jamonholmgren.com)<br />[💻](https://github.com/axodotdev/oranda/commits?author=jamonholmgren "Code") | [<img src="https://avatars0.githubusercontent.com/u/1695613?v=4" width="100px;"/><br /><sub><b>Timothy</b></sub>](http://timothy.is)<br />[💻](https://github.com/axodotdev/oranda/commits?author=timothyis "Code") | [<img src="https://avatars2.githubusercontent.com/u/13808724?v=4" width="100px;"/><br /><sub><b>Andrew Cherniavskii</b></sub>](https://github.com/cherniavskii)<br />[💻](https://github.com/axodotdev/oranda/commits?author=cherniavskii "Code") | [<img src="https://avatars2.githubusercontent.com/u/16899513?v=4" width="100px;"/><br /><sub><b>timkolberger</b></sub>](https://github.com/TimKolberger)<br />[💻](https://github.com/axodotdev/oranda/commits?author=TimKolberger "Code") |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 
-##### devDependency install
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- ALL-CONTRIBUTORS-LIST: START - Do not remove or modify this section -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+<!-- markdownlint-enable -->
 
-If you'd like to install `rover` as a `devDependency` in your JavaScript project, you can run `npm i --save-dev @apollo/rover`. You can then call `rover` directly in your `package.json` [scripts](https://docs.npmjs.com/cli/v6/using-npm/scripts), or you can run `npx rover` in your project directory to execute commands.
+## License
 
-##### Manual download and install
-
-If you'd like to call `rover` from any directory on your machine, you can run `npm i -g @apollo/rover`.
-
-Note: Unfortunately if you've installed `npm` without a version manager such as `nvm`, you may have trouble with global installs. If you encounter an `EACCES` permission-related error while trying to install globally, DO NOT run the install command with `sudo`. [This support page](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) has information that should help to resolve this issue.
-
-#### Without curl
-
-You can also [download the binary for your operating system](https://github.com/apollographql/rover/releases) and manually add its location to your `PATH`.
-
-##### Unsupported architectures
-
-If you don't see your CPU architecture supported as part of our release pipeline, you can build from source with [`cargo`](https://github.com/rust-lang/cargo). Clone this repo, and run `cargo xtask dist --version v0.1.3`. This will compile a released version of Rover for you, and place the binary in your `target` directory.
-
-```
-git clone https://github.com/apollographql/rover
-cargo xtask dist --version v0.1.3
-```
-
-From here you can either place the binary in your `PATH` manually, or run `./target/release/{optional_target}/rover install`.
-
-## Contributions
-
-See [this page](https://go.apollo.dev/r/contributing) for info about contributing to Rover.
-
-## Licensing
-
-Source code in this repository is covered by (i) an MIT compatible license or (ii) the Elastic License 2.0, in each case, as designated by a licensing file within a subdirectory or file header. The default throughout the repository is an MIT compatible license, unless a file header or a licensing file in a subdirectory specifies another license.
+MIT - see [LICENSE](https://github.com/axodotdev/oranda/blob/master/LICENSE.md)
