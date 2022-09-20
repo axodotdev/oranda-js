@@ -70,7 +70,6 @@ a {
 }
 
 blockquote {
- 
   font-size: 30px;
   font-style: italic;
   letter-spacing: -0.36px;
@@ -175,13 +174,13 @@ h6 {
   padding-left: 0;
 }
 
-
 .shiki {
   padding: 1em;
 }
 
-table, tr, td {
-  border: none;
+table,
+tr,
+td {
   border-collapse: collapse;
   background-color: #f0f0f0;
 }
@@ -190,11 +189,11 @@ table {
   border-radius: 8px;
 
   tbody {
-
-    td, th {
+    td,
+    th {
       padding: 1em;
     }
-    
+
     tr {
       &:not(:last-of-type) {
         border-bottom: 1px solid #e4e4e7;
@@ -205,12 +204,12 @@ table {
       }
     }
   }
+
   thead {
     th {
       background-color: #27272a;
       padding: 1em;
       color: #fafafa;
-      border: none;
     }
   }
 }

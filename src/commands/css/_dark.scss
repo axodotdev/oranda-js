@@ -8,7 +8,9 @@
     background: transparent;
   }
 
-  .shiki {    border-radius: 4px;}
+  .shiki {
+    border-radius: 4px;
+  }
 
   code {
     color: rgba(255, 255, 255, 0.85);
@@ -18,7 +20,6 @@
   .anchor svg path {
     fill: white;
   }
-
 
   h1,
   h2,
@@ -31,8 +32,9 @@
     color: #fafafa;
   }
 
-
-  table, tr, td {
+  table,
+  tr,
+  td {
     background-color: #161618;
   }
 
@@ -51,6 +53,3 @@
     }
   }
 }
-
-
-
