@@ -18,9 +18,7 @@ const md = require('markdown-it')({
   xhtmlOut: true,
   linkify: true,
 })
-const prism = require('markdown-it-prism')
 
-md.use(prism, {})
 md.use(require('markdown-it-inline-comments'))
 md.use(require('markdown-it-checkbox'))
 md.use(require('markdown-it-github-headings'))
@@ -28,6 +26,12 @@ md.use(require('markdown-it-anchor'), {
   level: 1,
 })
 md.use(require('markdown-it-emoji'))
+md.use(require('markdown-it-shiki').default, {
+  theme: {
+    dark: 'poimandres',
+    light: 'github-light',
+  },
+})
 md.linkify.tlds('.md', false)
 md.linkify.tlds('.MD', false)
 md.use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {

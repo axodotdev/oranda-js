@@ -59,7 +59,7 @@
     "markdown-it-for-inline": "^0.1.1",
     "markdown-it-github-headings": "^2.0.1",
     "markdown-it-inline-comments": "^1.0.1",
-    "markdown-it-prism": "^2.3.0",
+    "markdown-it-shiki": "^0.5.1",
     "markdownlint": "^0.26.2",
     "node-sass": "^7.0.3",
     "normalize.css": "^8.0.1",

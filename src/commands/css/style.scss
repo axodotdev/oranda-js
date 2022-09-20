@@ -3,10 +3,3 @@
 @import 'gh-corner';
 @import 'dark';
 
-.body.light {
-  @import 'prism-theme';
-}
-
-.body.dark {
-  @import './night-owl';
-}
