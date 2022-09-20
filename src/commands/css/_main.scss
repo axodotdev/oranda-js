@@ -70,6 +70,7 @@ a {
 }
 
 blockquote {
+
   font-size: 30px;
   font-style: italic;
   letter-spacing: -0.36px;
@@ -141,7 +142,7 @@ h3 {
   display: flex;
   align-items: center;
 
-  > a {
+  >a {
     margin-top: 0;
   }
 }
@@ -174,6 +175,7 @@ h6 {
   padding-left: 0;
 }
 
+
 .shiki {
   padding: 1em;
 }
@@ -181,6 +183,7 @@ h6 {
 table,
 tr,
 td {
+
   border-collapse: collapse;
   background-color: #f0f0f0;
 }
@@ -189,6 +192,7 @@ table {
   border-radius: 8px;
 
   tbody {
+
     td,
     th {
       padding: 1em;
@@ -210,6 +214,7 @@ table {
       background-color: #27272a;
       padding: 1em;
       color: #fafafa;
+
     }
   }
 }
