@@ -1,13 +1,14 @@
 /* Dark Mode */
 
 .body.dark {
-  color: #f5f5f5;
-  background: #1a1919;
+  color: #fafafa;
+  background: #18181b;
 
   pre code {
     background: transparent;
-    color: rgba(0, 0, 0, 0.84);
   }
+
+  .shiki {    border-radius: 4px;}
 
   code {
     color: rgba(255, 255, 255, 0.85);
@@ -18,12 +19,6 @@
     fill: white;
   }
 
-  pre:not([class]) {
-    background: #f5f2f0;
-    padding: 1em;
-    margin: 0.5em 0;
-    overflow: auto;
-  }
 
   h1,
   h2,
@@ -33,7 +28,29 @@
   h6,
   p,
   a {
-    color: #f5f5f5;
-    background: #1a1919;
+    color: #fafafa;
+  }
+
+
+  table, tr, td {
+    background-color: #161618;
+  }
+
+  table {
+    tbody {
+      tr {
+        &:not(:last-of-type) {
+          border-bottom: 1px solid #27272a;
+        }
+      }
+    }
+    thead {
+      th {
+        background-color: #27272a;
+      }
+    }
   }
 }
+
+
+

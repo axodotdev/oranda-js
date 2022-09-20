@@ -172,9 +172,45 @@ h6 {
 
 #oranda .body pre:not([class]) {
   background-color: transparent;
+  padding-left: 0;
 }
 
 
 .shiki {
   padding: 1em;
+}
+
+table, tr, td {
+  border: none;
+  border-collapse: collapse;
+  background-color: #f0f0f0;
+}
+
+table {
+  border-radius: 8px;
+
+  tbody {
+
+    td, th {
+      padding: 1em;
+    }
+    
+    tr {
+      &:not(:last-of-type) {
+        border-bottom: 1px solid #e4e4e7;
+      }
+
+      td:first-child {
+        font-weight: 600;
+      }
+    }
+  }
+  thead {
+    th {
+      background-color: #27272a;
+      padding: 1em;
+      color: #fafafa;
+      border: none;
+    }
+  }
 }

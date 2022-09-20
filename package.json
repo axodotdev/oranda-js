@@ -17,7 +17,7 @@
     "contributors:generate": "all-contributors generate",
     "now-build": "npm run build",
     "serve": "npx serve -l 3021",
-    "watch": "nodemon -e js,md --ignore public/ --ignore node_modules/ ./bin/oranda.js",
+    "watch": "nodemon -e js,md,scss --ignore public/ --ignore node_modules/ ./bin/oranda.js",
     "dev": "run-p serve watch"
   },
   "files": [
