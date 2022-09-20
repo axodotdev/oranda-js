@@ -13,6 +13,32 @@ const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
 const getRemoteStyles = require('../utils/remoteStyles')
 const snarkdown = require('snarkdown')
 const iterator = require('markdown-it-for-inline')
+const THEMES = require('../utils/syntaxHighlightThemes')
+
+const defaultOptions = {
+  dist: 'public',
+  darkTheme: false,
+  noHeader: false,
+  file: null,
+  name: null,
+  description: null,
+  styles: {},
+  logo: '',
+  shareCard: '',
+  favicon: '',
+  additionalFiles: [],
+  homepage: null,
+  repo: null,
+  pathPrefix: `${process.env.PATH_PREFIX || ''}`,
+  meta: [],
+  remoteStyles: [],
+  remoteScripts: [],
+  syntaxHighlight: {
+    dark: 'poimandres',
+    light: 'github-light',
+  },
+}
+
 const md = require('markdown-it')({
   html: true,
   xhtmlOut: true,
@@ -26,12 +52,7 @@ md.use(require('markdown-it-anchor'), {
   level: 1,
 })
 md.use(require('markdown-it-emoji'))
-md.use(require('markdown-it-shiki').default, {
-  theme: {
-    dark: 'poimandres',
-    light: 'github-light',
-  },
-})
+
 md.linkify.tlds('.md', false)
 md.linkify.tlds('.MD', false)
 md.use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
@@ -59,26 +80,6 @@ md.renderer.rules.html_block = function (tokens, idx, options, env, self) {
   return defaultRender(tokens, idx, options, env, self)
 }
 
-const defaultOptions = {
-  dist: 'public',
-  darkTheme: false,
-  noHeader: false,
-  file: null,
-  name: null,
-  description: null,
-  styles: {},
-  logo: '',
-  shareCard: '',
-  favicon: '',
-  additionalFiles: [],
-  homepage: null,
-  repo: null,
-  pathPrefix: `${process.env.PATH_PREFIX || ''}`,
-  meta: [],
-  remoteStyles: [],
-  remoteScripts: [],
-}
-
 module.exports = {
   name: 'oranda',
   description: 'Build your static website from markdown',
@@ -97,6 +98,20 @@ module.exports = {
       ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
         {}),
     }
+
+    const darkThemeExists = THEMES.includes(options.syntaxHighlight.dark)
+    const lightThemeExists = THEMES.includes(options.syntaxHighlight.light)
+
+    md.use(require('markdown-it-shiki').default, {
+      theme: {
+        dark: darkThemeExists
+          ? options.syntaxHighlight.dark
+          : defaultOptions.syntaxHighlight.dark,
+        light: lightThemeExists
+          ? options.syntaxHighlight.light
+          : defaultOptions.syntaxHighlight.light,
+      },
+    })
 
     const dist = options.dist
     const distFolder = `${process.cwd()}/${dist}`

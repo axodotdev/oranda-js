@@ -67,7 +67,8 @@ It can contain the following options:
 | description     | description in package.json        | The project description for meta tags                                                                        |
 | homepage        | null                               | The project homepage for meta tags                                                                           |
 | noHeader        | false                              | Show no header and just the markdown content                                                                 |
-| darkTheme       | false                              | Dark theme ofc 🎉                                                                                            |
+| darkTheme       | false                              | Dark theme ofc 🎉                                                                                             |
+| syntaxHighlight | `{ dark: 'poimandres', light: 'github-light'}` | What syntax highlight theme to use in dark and light mode. All [shikijs themes](https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes) can be used                     |
 | favicon         | ''                                 | Favicon url or local path                                                                                    |
 | dist            | public                             | To what folder to render your HTML                                                                           |
 | styles          | {}                                 | Styles to apply to the page. Object or path to css/scss file                                                 |
