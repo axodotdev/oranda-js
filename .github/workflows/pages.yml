@@ -33,7 +33,7 @@ jobs:
       - name: Install
         run: yarn
       - name: Run build script
-        run: ./bin/oranda.js deploy
+        run: yarn build
         shell: bash
       - name: Setup Pages
         uses: actions/configure-pages@v2
