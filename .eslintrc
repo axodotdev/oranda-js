@@ -3,7 +3,8 @@
   "extends": "standard",
   "globals": {
     "test": true,
-    "expect": true
+    "expect": true,
+    "afterEach": true
   },
   "rules": {
     "space-before-function-paren": 0,
