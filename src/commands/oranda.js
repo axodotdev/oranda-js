@@ -16,6 +16,8 @@ const iterator = require('markdown-it-for-inline')
 const THEMES = require('../utils/syntaxHighlightThemes')
 const { MESSAGES } = require('../utils/constants/messages')
 const { readOptions, defaultOptions } = require('../utils/readOptions')
+const { detectOS } = require('../utils/getOs')
+const { createTabs } = require('../utils/createTabs')
 
 const md = require('markdown-it')({
   html: true,
@@ -229,11 +231,13 @@ module.exports = {
           options.remoteStyles,
           options.remoteScripts
         ),
-        body: `<div id="oranda"><div class="body ${dark}"><div class="container">${githubCorner}${header(
+        body: /*html*/ `<div id="oranda"><div class="body ${dark}"><div class="container">${githubCorner}${header(
           options,
           name,
           options.additionalFiles
-        )}${md.render(markdown)}</div></div></div>`,
+        )}${createTabs({ options, packageJSON })}${md.render(
+          markdown
+        )}</div></div><script>${detectOS}</script></div>`,
         favicon: options.favicon,
       })
 

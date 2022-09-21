@@ -5,7 +5,8 @@ Create beautiful and simple HTML pages from your Readme.md files
 - 🛠 No config
 - 👩‍💻 Code Highlighting
 - 💯 Emoji Support
-- ✨ Creates Static files (No JavaScript loaded)
+- ✨ Creates Static files
+- 🌎 OS Detection
 - 🏳️‍🌈 Pretty Pages
 - 🦄 Customizable
 - 🖼 Image minification

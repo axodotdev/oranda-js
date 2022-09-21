@@ -50,12 +50,15 @@ code {
 
 /* TEXT */
 
+.text-center {
+  justify-content: center;
+}
+
 p,
 i,
 a,
 li {
   margin-top: 21px;
-  font-family: 'Lato', sans-serif;
   font-size: 21px;
   letter-spacing: -0.03px;
   line-height: 1.58;
