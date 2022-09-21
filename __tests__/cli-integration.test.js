@@ -9,7 +9,6 @@ const parentDir = process.cwd()
 afterEach(() => {
   filesystem.remove('public')
   process.chdir(parentDir)
-  filesystem.remove('testoutput')
 })
 
 test('generates html', async () => {
@@ -50,6 +49,20 @@ test('reads config from package.json', async () => {
   const css = filesystem.read('testoutput/style.css')
 
   expect(css).toContain('font-size:18em')
+  filesystem.remove('testoutput')
+})
+
+test('reads config from cargo', async () => {
+  process.chdir('./__tests__/test-readme/cargo')
+
+  const output = await cli()
+
+  expect(output).toContain(success.replace('public', 'sup'))
+  const html = filesystem.read('sup/index.html')
+
+  expect(html).toContain('A CLI for the letsplayretro.games website')
+  expect(html).toContain('class="body dark"')
+  filesystem.remove('sup')
 })
 
 test('generates several files', async () => {
