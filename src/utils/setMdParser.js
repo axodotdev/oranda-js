@@ -1,7 +1,8 @@
 const snarkdown = require('snarkdown')
 const iterator = require('markdown-it-for-inline')
+const { syntaxThemeToUse } = require('./syntaxHighlightThemes')
 
-const setUpMarkdownParser = () => {
+const setUpMarkdownParser = ({ filesystem }) => {
   const md = require('markdown-it')({
     html: true,
     xhtmlOut: true,
@@ -42,6 +43,8 @@ const setUpMarkdownParser = () => {
 
     return defaultRender(tokens, idx, options, env, self)
   }
+  const shikiThemes = syntaxThemeToUse({ filesystem })
+  md.use(require('markdown-it-shiki').default, shikiThemes)
 
   return md
 }

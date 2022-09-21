@@ -54,8 +54,6 @@ const readOptions = ({ filesystem }) => {
         .reduce((acc, curr) => ({ ...acc, ...curr }), {})
     : {}
 
-  console.log(metaInCargo)
-
   const options = {
     ...defaultOptions,
     version,
