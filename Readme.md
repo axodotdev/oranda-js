@@ -1,4 +1,4 @@
-# Oranda
+# 🐠 Oranda
 
 Create beautiful and simple HTML pages from your Readme.md files
 
