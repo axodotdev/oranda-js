@@ -2,6 +2,7 @@ const DEFAULT_FILENAMES = require('../utils/constants/DEFAULT_FILENAMES')
 const fs = require('fs')
 const { run } = require('./oranda')
 const { MESSAGES } = require('../utils/constants/messages')
+const { readOptions } = require('../utils/readOptions')
 
 module.exports = {
   name: 'watch',
@@ -13,19 +14,13 @@ module.exports = {
       filesystem,
     } = toolbox
     success(MESSAGES.watching_files)
-    const packageJSON =
-      filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
-    const options = {
-      ...(packageJSON.oranda || {}),
-      ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
-        {}),
-    }
+    const { options } = readOptions({ filesystem })
     const files = []
 
-    DEFAULT_FILENAMES.find((filename) => {
-      return filesystem.exists(filename) ? files.push(filename) : null
-    })
+    DEFAULT_FILENAMES.find((filename) =>
+      filesystem.exists(filename) ? files.push(filename) : null
+    )
 
     if (options.additionalFiles) {
       files.push(...options.additionalFiles)

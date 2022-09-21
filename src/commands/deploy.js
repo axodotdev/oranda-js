@@ -1,5 +1,6 @@
 const ghpages = require('gh-pages')
 const { MESSAGES } = require('../utils/constants/messages')
+const { readOptions } = require('../utils/readOptions')
 const { run } = require('./oranda')
 
 module.exports = {
@@ -12,15 +13,7 @@ module.exports = {
       filesystem,
     } = toolbox
 
-    const packageJSON =
-      filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
-
-    const options = {
-      ...{ dist: 'public' },
-      ...(packageJSON.oranda || {}),
-      ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
-        {}),
-    }
+    const { options } = readOptions({ filesystem })
 
     const dist = options.dist
     const distFolder = `${process.cwd()}/${dist}`

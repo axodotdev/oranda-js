@@ -1,5 +1,5 @@
-/* eslint-disable node/no-path-concat */
 const toCss = require('to-css')
+const path = require('path')
 const CleanCSS = require('clean-css')
 const imageminJpegtran = require('imagemin-jpegtran')
 const imageminPngquant = require('imagemin-pngquant')
@@ -15,30 +15,7 @@ const snarkdown = require('snarkdown')
 const iterator = require('markdown-it-for-inline')
 const THEMES = require('../utils/syntaxHighlightThemes')
 const { MESSAGES } = require('../utils/constants/messages')
-
-const defaultOptions = {
-  dist: 'public',
-  darkTheme: false,
-  noHeader: false,
-  file: null,
-  name: null,
-  description: null,
-  styles: {},
-  logo: '',
-  shareCard: '',
-  favicon: '',
-  additionalFiles: [],
-  homepage: null,
-  repo: null,
-  pathPrefix: `${process.env.PATH_PREFIX || ''}`,
-  meta: [],
-  remoteStyles: [],
-  remoteScripts: [],
-  syntaxHighlight: {
-    dark: 'poimandres',
-    light: 'github-light',
-  },
-}
+const { readOptions, defaultOptions } = require('../utils/readOptions')
 
 const md = require('markdown-it')({
   html: true,
@@ -90,15 +67,7 @@ module.exports = {
       filesystem,
     } = toolbox
 
-    const packageJSON =
-      filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
-
-    const options = {
-      ...defaultOptions,
-      ...(packageJSON.oranda || {}),
-      ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') ||
-        {}),
-    }
+    const { options, packageJSON } = readOptions({ filesystem })
 
     const darkThemeExists = THEMES.includes(options.syntaxHighlight.dark)
     const lightThemeExists = THEMES.includes(options.syntaxHighlight.light)
@@ -141,9 +110,9 @@ module.exports = {
     const css = sass
       .renderSync({
         data: remoteStyles
-          .concat(filesystem.read(`${__dirname}/css/style.scss`))
+          .concat(filesystem.read(path.join(__dirname, 'css/style.scss')))
           .concat(getAdditionalStyles()),
-        includePaths: [`${__dirname}/css`],
+        includePaths: [path.join(__dirname, 'css')],
       })
       .css.toString()
 
