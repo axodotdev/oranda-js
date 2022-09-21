@@ -40,7 +40,7 @@ const readOptions = ({ filesystem }) => {
 
   try {
     cargo = toml.parse(
-      filesystem.read(`${process.cwd()}/cargo.toml`, 'utf8')
+      filesystem.read(`${process.cwd()}/Cargo.toml`, 'utf8')
     ).package
   } catch {}
   const configFile =
