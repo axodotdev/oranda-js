@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install
-        run: yarn && yarn build
+        run: yarn
       - name: Run build script
         run: ./bin/oranda.js deploy
         shell: bash
@@ -41,7 +41,7 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           # Upload entire repository
-          path: 'dist'
+          path: 'public'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
