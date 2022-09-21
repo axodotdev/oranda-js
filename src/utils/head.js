@@ -21,13 +21,14 @@ module.exports = (
     typeof remoteStyles === 'string' ? [remoteStyles] : remoteStyles
   const remoteScriptsCleaned =
     typeof remoteScripts === 'string' ? [remoteScripts] : remoteScripts
-  return `
+
+  return /*html*/ `
   <meta charset="utf-8" />
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   ${
     options.favicon
-      ? `
+      ? /*html*/ `
       <meta name="image" content="${options.favicon}">
       <meta itemprop="image" content="${options.favicon}">
       `
@@ -36,7 +37,7 @@ module.exports = (
   <meta property="og:type" content="website">
   ${
     name
-      ? `
+      ? /*html*/ `
       <meta itemprop="name" content="${name}">
       <meta property="og:title" content="${name}">
       <meta property="og:site_name" content="${name}">
@@ -45,7 +46,7 @@ module.exports = (
   }
   ${
     description
-      ? `
+      ? /*html*/ `
       <meta name="description" content="${description}">
       <meta itemprop="description" content="${description}">
       <meta property="og:description" content="${description}">
@@ -55,7 +56,7 @@ module.exports = (
   ${homepage ? `<meta property="og:url" content="${homepage}">` : ''}
   ${
     options.shareCard && options.shareCard.includes('http')
-      ? `
+      ? /*html*/ `
       <meta name="twitter:card" content="summary_large_image">
       <meta property="og:image" content="${options.shareCard}">
       `

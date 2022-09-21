@@ -9,11 +9,12 @@ const corner = require('../utils/githubCorner')
 const orandaImports = require('../utils/orandaImports')
 const head = require('../utils/head')
 const header = require('../utils/header')
-const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
+const DEFAULT_FILENAMES = require('../utils/constants/DEFAULT_FILENAMES')
 const getRemoteStyles = require('../utils/remoteStyles')
 const snarkdown = require('snarkdown')
 const iterator = require('markdown-it-for-inline')
 const THEMES = require('../utils/syntaxHighlightThemes')
+const { MESSAGES } = require('../utils/constants/messages')
 
 const defaultOptions = {
   dist: 'public',
@@ -168,9 +169,7 @@ module.exports = {
       if (
         options.additionalFiles[options.additionalFiles.length - 1] === null
       ) {
-        return error(
-          'No default file ("readme.md", "Readme.md", or "README.md") can be found. Please use the "file" option if using a differing filename.'
-        )
+        return error(MESSAGES.no_file_found)
       }
     } else {
       // Set file to the given `options.file` value
@@ -184,7 +183,7 @@ module.exports = {
 
       // Throw error if file does not exist and subsequently can't get markdown from the file.
       if (typeof markdown === 'undefined') {
-        return error(`Cannot find file "${file}". Please ensure file exists.`)
+        return error(MESSAGES.additional_file_not_found(file))
       }
 
       const description = options.description || packageJSON.description
@@ -275,18 +274,12 @@ module.exports = {
           html
         )
       } catch (e) {
-        error('Oh no, there has been an error making your file', file)
+        error(MESSAGES.creation_error, file)
       }
     })
 
-    info(`
-
-                Generated your static files at ${dist}/
-      `)
-    success(`
-      🎉   You can deploy the ${dist} folder to a static server    🎉
-
-      `)
+    info(MESSAGES.file_generated(dist))
+    success(MESSAGES.ready_to_deploy(dist))
   },
 }
 

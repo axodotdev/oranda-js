@@ -1,6 +1,5 @@
 {
   "logo": "./logo.svg",
   "favicon": "./logo.ico",
-  "darkTheme": true,
   "additionalFiles": ["./Deployment.md"]
 }

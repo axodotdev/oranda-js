@@ -1,6 +1,7 @@
-const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
+const DEFAULT_FILENAMES = require('../utils/constants/DEFAULT_FILENAMES')
 const fs = require('fs')
 const { run } = require('./oranda')
+const { MESSAGES } = require('../utils/constants/messages')
 
 module.exports = {
   name: 'watch',
@@ -11,7 +12,7 @@ module.exports = {
       print: { success },
       filesystem,
     } = toolbox
-    success('Watching your files')
+    success(MESSAGES.watching_files)
     const packageJSON =
       filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 

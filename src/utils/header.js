@@ -1,4 +1,4 @@
-const DEFAULT_FILENAMES = require('./DEFAULT_FILENAMES')
+const DEFAULT_FILENAMES = require('./constants/DEFAULT_FILENAMES')
 
 const capitalize = (name) =>
   name.charAt(0).toUpperCase() + name.slice(1).toLowerCase()

@@ -1,5 +1,6 @@
 const markdownlint = require('markdownlint')
-const DEFAULT_FILENAMES = require('../utils/DEFAULT_FILENAMES')
+const { MESSAGES } = require('../utils/constants/messages')
+const DEFAULT_FILENAMES = require('../utils/constants/DEFAULT_FILENAMES')
 
 module.exports = {
   name: 'lint',
@@ -32,10 +33,10 @@ module.exports = {
     markdownlint({ files }, (err, result) => {
       if (!err) {
         if (result.toString()) {
-          error('We found some errors 😢')
+          error(MESSAGES.lint_errors)
           error(result.toString())
         } else {
-          success('All clear ✅')
+          success(MESSAGES.lint_success)
         }
       }
     })
