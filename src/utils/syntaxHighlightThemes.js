@@ -1,4 +1,6 @@
-module.exports = [
+const { readOptions, defaultOptions } = require('./readOptions')
+
+const AVAILABLE_THEMES = [
   'dark-plus',
   'dracula-soft',
   'dracula',
@@ -28,3 +30,28 @@ module.exports = [
   'vitesse-dark',
   'vitesse-light',
 ]
+
+const syntaxThemeToUse = ({ filesystem }) => {
+  const { options } = readOptions({ filesystem })
+
+  const darkThemeExists = AVAILABLE_THEMES.includes(
+    options.syntaxHighlight.dark
+  )
+  const lightThemeExists = AVAILABLE_THEMES.includes(
+    options.syntaxHighlight.light
+  )
+  const shikiThemes = {
+    theme: {
+      dark: darkThemeExists
+        ? options.syntaxHighlight.dark
+        : defaultOptions.syntaxHighlight.dark,
+      light: lightThemeExists
+        ? options.syntaxHighlight.light
+        : defaultOptions.syntaxHighlight.light,
+    },
+  }
+
+  return shikiThemes
+}
+
+module.exports = { syntaxThemeToUse }

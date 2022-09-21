@@ -27,6 +27,10 @@
         color: #fafafa;
         padding: 20px;
 
+        pre {
+            margin: 0;
+        }
+
         a {
             color: #fafafa;
         }
@@ -87,7 +91,6 @@
 }
 
 .dark .tabs {
-
     label {
         box-shadow: none;
         background-color: #18181b;

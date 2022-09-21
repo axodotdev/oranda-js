@@ -11,54 +11,14 @@ const head = require('../utils/head')
 const header = require('../utils/header')
 const DEFAULT_FILENAMES = require('../utils/constants/DEFAULT_FILENAMES')
 const getRemoteStyles = require('../utils/remoteStyles')
-const snarkdown = require('snarkdown')
-const iterator = require('markdown-it-for-inline')
-const THEMES = require('../utils/syntaxHighlightThemes')
+const { syntaxThemeToUse } = require('../utils/syntaxHighlightThemes')
 const { MESSAGES } = require('../utils/constants/messages')
-const { readOptions, defaultOptions } = require('../utils/readOptions')
+const { readOptions } = require('../utils/readOptions')
 const { detectOS } = require('../utils/getOs')
 const { createTabs } = require('../utils/createTabs')
+const { setUpMarkdownParser } = require('../utils/setMdParser')
 
-const md = require('markdown-it')({
-  html: true,
-  xhtmlOut: true,
-  linkify: true,
-})
-
-md.use(require('markdown-it-inline-comments'))
-md.use(require('markdown-it-checkbox'))
-md.use(require('markdown-it-github-headings'))
-md.use(require('markdown-it-anchor'), {
-  level: 1,
-})
-md.use(require('markdown-it-emoji'))
-
-md.linkify.tlds('.md', false)
-md.linkify.tlds('.MD', false)
-md.use(iterator, 'url_new_win', 'link_open', function (tokens, idx) {
-  const aIndex = tokens[idx].attrIndex('target')
-  const hrefIndex = tokens[idx].attrIndex('href')
-
-  if (tokens[idx].attrs[hrefIndex][1].startsWith('#')) return
-
-  if (aIndex < 0) {
-    tokens[idx].attrPush(['target', '_blank'])
-  } else {
-    tokens[idx].attrs[aIndex][1] = '_blank'
-  }
-})
-const defaultRender =
-  md.renderer.rules.html_block ||
-  function (tokens, idx, options, env, self) {
-    return self.renderToken(tokens, idx, options)
-  }
-
-md.renderer.rules.html_block = function (tokens, idx, options, env, self) {
-  const htmlBlock = tokens[idx]
-  tokens[idx].content = snarkdown(htmlBlock.content)
-
-  return defaultRender(tokens, idx, options, env, self)
-}
+const md = setUpMarkdownParser()
 
 module.exports = {
   name: 'oranda',
@@ -70,20 +30,9 @@ module.exports = {
     } = toolbox
 
     const { options } = readOptions({ filesystem })
+    const shikiThemes = syntaxThemeToUse({ filesystem })
 
-    const darkThemeExists = THEMES.includes(options.syntaxHighlight.dark)
-    const lightThemeExists = THEMES.includes(options.syntaxHighlight.light)
-
-    md.use(require('markdown-it-shiki').default, {
-      theme: {
-        dark: darkThemeExists
-          ? options.syntaxHighlight.dark
-          : defaultOptions.syntaxHighlight.dark,
-        light: lightThemeExists
-          ? options.syntaxHighlight.light
-          : defaultOptions.syntaxHighlight.light,
-      },
-    })
+    md.use(require('markdown-it-shiki').default, shikiThemes)
 
     const dist = options.dist
     const distFolder = `${process.cwd()}/${dist}`
@@ -157,8 +106,6 @@ module.exports = {
         return error(MESSAGES.additional_file_not_found(file))
       }
 
-      const description = options.description
-      const name = options.name
       const repo = options.repository
       const githubCorner = repo ? corner(repo, options.darkTheme) : ''
       const dark = options.darkTheme ? 'dark' : 'light'
@@ -212,30 +159,23 @@ module.exports = {
       }
 
       const isIndex = DEFAULT_FILENAMES.includes(file)
+      const tabs = await createTabs({ options, filesystem })
 
       const fileName = isIndex
         ? 'index'
         : (file.substring(file.lastIndexOf('/') + 1) || '').split('.md')[0]
 
+      const name = options.name
       const title = name ? name.charAt(0).toUpperCase() + name.slice(1) : ''
+
       const html = createHTML({
         title,
         css: orandaImports.css,
         lang: 'en',
-        head: head(
-          description,
-          name,
-          options,
-          options.homepage,
-          options.meta,
-          options.remoteStyles,
-          options.remoteScripts
-        ),
+        head: head(options),
         body: /*html*/ `<div id="oranda"><div class="body ${dark}"><div class="container">${githubCorner}${header(
-          options,
-          name,
-          options.additionalFiles
-        )}${createTabs({ options })}${md.render(
+          options
+        )}${tabs}${md.render(
           markdown
         )}</div></div><script>${detectOS}</script></div>`,
         favicon: options.favicon,

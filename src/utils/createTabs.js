@@ -1,4 +1,9 @@
-const createTabs = ({ options }) => {
+const shiki = require('shiki')
+const { syntaxThemeToUse } = require('./syntaxHighlightThemes')
+
+const createTabs = async ({ options, filesystem }) => {
+  const shikiThemes = syntaxThemeToUse({ filesystem })
+  const format = await shiki.getHighlighter(shikiThemes)
   if (!options.downloads) return
   return /*html*/ `
     <h2 class="text-center">Download for your platform</h2>
@@ -23,7 +28,9 @@ const createTabs = ({ options }) => {
                       : ''
                   }
             </div>`
-                : `<div class="tab">${currentOption.text}</div>`
+                : `<div class="tab">${format.codeToHtml(currentOption.text, {
+                    lang: 'sh',
+                  })}</div>`
             }`
         })
         .join('')}

@@ -1,12 +1,14 @@
-module.exports = (
+module.exports = ({
   description,
   name,
-  options = {},
   homepage,
   meta = [],
   remoteStyles = [],
-  remoteScripts = []
-) => {
+  remoteScripts = [],
+  favicon,
+  darkTheme,
+  shareCard,
+}) => {
   const metaTags = meta
     .map((value) => {
       if (!value.content) return null
@@ -27,10 +29,10 @@ module.exports = (
   <meta http-equiv="x-ua-compatible" content="ie=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   ${
-    options.favicon
+    favicon
       ? /*html*/ `
-      <meta name="image" content="${options.favicon}">
-      <meta itemprop="image" content="${options.favicon}">
+      <meta name="image" content="${favicon}">
+      <meta itemprop="image" content="${favicon}">
       `
       : ''
   }
@@ -55,16 +57,16 @@ module.exports = (
   }
   ${homepage ? `<meta property="og:url" content="${homepage}">` : ''}
   ${
-    options.shareCard && options.shareCard.includes('http')
+    shareCard && shareCard.includes('http')
       ? /*html*/ `
       <meta name="twitter:card" content="summary_large_image">
-      <meta property="og:image" content="${options.shareCard}">
+      <meta property="og:image" content="${shareCard}">
       `
       : ''
   }
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="${
-    options.darkTheme ? 'dark' : 'white'
+    darkTheme ? 'dark' : 'white'
   }">
   ${metaTags.join('')}
   ${

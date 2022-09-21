@@ -25,8 +25,14 @@ const defaultOptions = {
 }
 
 const readOptions = ({ filesystem }) => {
-  const { oranda, version, name, description, repository, homepage } =
-    filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
+  const {
+    oranda = {},
+    version,
+    name,
+    description,
+    repository,
+    homepage,
+  } = filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
   let cargo = {}
 
@@ -35,19 +41,19 @@ const readOptions = ({ filesystem }) => {
       filesystem.read(`${process.cwd()}/cargo.toml`, 'utf8')
     ).package
   } catch {}
-
-  console.log(cargo)
+  const configFile =
+    filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') || {}
 
   const options = {
+    ...defaultOptions,
     version,
     name,
     description,
     homepage,
     repository: repository?.url,
-    ...defaultOptions,
-    ...(oranda || {}),
+    ...oranda,
     ...cargo,
-    ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') || {}),
+    ...configFile,
   }
 
   return { options }
