@@ -1,4 +1,4 @@
-const createTabs = ({ options, packageJSON }) => {
+const createTabs = ({ options }) => {
   if (!options.downloads) return
   return /*html*/ `
     <h2 class="text-center">Download for your platform</h2>
@@ -11,7 +11,7 @@ const createTabs = ({ options, packageJSON }) => {
             ${
               currentOption.link
                 ? `<div class="tab">
-            v${packageJSON.version}
+            v${options.version}
             ${
               currentOption.changelog
                 ? ` - <a href=${currentOption.changelog} target="_blank">Changelog</a>`

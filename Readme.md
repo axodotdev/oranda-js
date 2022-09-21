@@ -74,7 +74,7 @@ It can contain the following options:
 | dist            | public                             | To what folder to render your HTML                                                                           |
 | styles          | `{}`                                 | Styles to apply to the page. Object or path to css/scss file                                                 |
 | additionalFiles | `[]`                                 | Any other pages to create. It expects an array of paths of markdown files                                    |
-| repo            | `null`                               | Link to point the github corner                                                                              |
+| repository            | `null`                               | Link to point the github corner                                                                              |
 | pathPrefix      | Environment var `PATH_PREFIX` or `/` | Host your oranda files at e.g. /my-oranda-project                                                            |
 | meta            | `[]`                                | Any extra meta tags you would like                                                                           |
 | remoteStyles    | `[]`                                | Array of any remote styles you want to include (eg: Google Fonts)                                            |

@@ -62,7 +62,8 @@
     "node-sass": "^7.0.3",
     "normalize.css": "^8.0.1",
     "snarkdown": "^2.0.0",
-    "to-css": "^1.2.1"
+    "to-css": "^1.2.1",
+    "toml": "^3.0.0"
   },
   "devDependencies": {
     "all-contributors-cli": "^6.20.4",

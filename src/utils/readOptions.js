@@ -1,3 +1,5 @@
+const toml = require('toml')
+
 const defaultOptions = {
   dist: 'public',
   darkTheme: false,
@@ -23,16 +25,32 @@ const defaultOptions = {
 }
 
 const readOptions = ({ filesystem }) => {
-  const packageJSON =
+  const { oranda, version, name, description, repository, homepage } =
     filesystem.read(`${process.cwd()}/package.json`, 'json') || {}
 
+  let cargo = {}
+
+  try {
+    cargo = toml.parse(
+      filesystem.read(`${process.cwd()}/cargo.toml`, 'utf8')
+    ).package
+  } catch {}
+
+  console.log(cargo)
+
   const options = {
+    version,
+    name,
+    description,
+    homepage,
+    repository: repository?.url,
     ...defaultOptions,
-    ...(packageJSON.oranda || {}),
+    ...(oranda || {}),
+    ...cargo,
     ...(filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') || {}),
   }
 
-  return { options, packageJSON }
+  return { options }
 }
 
 module.exports = { readOptions, defaultOptions }

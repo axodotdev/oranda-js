@@ -69,7 +69,7 @@ module.exports = {
       filesystem,
     } = toolbox
 
-    const { options, packageJSON } = readOptions({ filesystem })
+    const { options } = readOptions({ filesystem })
 
     const darkThemeExists = THEMES.includes(options.syntaxHighlight.dark)
     const lightThemeExists = THEMES.includes(options.syntaxHighlight.light)
@@ -157,9 +157,9 @@ module.exports = {
         return error(MESSAGES.additional_file_not_found(file))
       }
 
-      const description = options.description || packageJSON.description
-      const name = options.name || packageJSON.name
-      const repo = options.repo || (packageJSON.repository || {}).url
+      const description = options.description
+      const name = options.name
+      const repo = options.repository
       const githubCorner = repo ? corner(repo, options.darkTheme) : ''
       const dark = options.darkTheme ? 'dark' : 'light'
 
@@ -226,7 +226,7 @@ module.exports = {
           description,
           name,
           options,
-          options.homepage || packageJSON.homepage,
+          options.homepage,
           options.meta,
           options.remoteStyles,
           options.remoteScripts
@@ -235,7 +235,7 @@ module.exports = {
           options,
           name,
           options.additionalFiles
-        )}${createTabs({ options, packageJSON })}${md.render(
+        )}${createTabs({ options })}${md.render(
           markdown
         )}</div></div><script>${detectOS}</script></div>`,
         favicon: options.favicon,
