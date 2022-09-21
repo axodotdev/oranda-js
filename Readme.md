@@ -172,8 +172,7 @@ All options can be found here: [https://github.com/tschaub/gh-pages#options](htt
 
 ## Acknowledgements
 
-- Base styles from [medium.css](https://github.com/lucagez/medium.css)
-- Logo from [OpenMoji](http://www.openmoji.org/library.html?search=beautiful&emoji=2728)
+- Logo from [OpenMoji](https://www.openmoji.org/library/emoji-E000/)
 
 ## Contributors
 

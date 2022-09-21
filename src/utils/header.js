@@ -11,7 +11,8 @@ module.exports = ({ logo, pathPrefix, name, noHeader, additionalFiles }) => {
       : (file.split('/')[file.split('/').length - 1] || '').split('.md')[0]
   }
 
-  const absolutePath = (path) => `${pathPrefix}${path}`
+  const absolutePath = (path) =>
+    path.startsWith('.') ? path : `${pathPrefix}${path}`
 
   const fileHref = (file) =>
     fileName(file) === 'Home' ? '' : `${fileName(file).toLowerCase()}.html`
