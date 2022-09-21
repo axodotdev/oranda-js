@@ -24,6 +24,8 @@ const defaultOptions = {
   },
 }
 
+const camelize = (s) => s.replace(/-./g, (x) => x[1].toUpperCase())
+
 const readOptions = ({ filesystem }) => {
   const {
     oranda = {},
@@ -44,6 +46,16 @@ const readOptions = ({ filesystem }) => {
   const configFile =
     filesystem.read(`${process.cwd()}/.oranda.config.json`, 'json') || {}
 
+  const metaInCargo = cargo.metadata
+    ? Object.keys(cargo.metadata.oranda || {})
+        .map((k) => ({
+          [camelize(k)]: cargo.metadata.oranda[k],
+        }))
+        .reduce((acc, curr) => ({ ...acc, ...curr }), {})
+    : {}
+
+  console.log(metaInCargo)
+
   const options = {
     ...defaultOptions,
     version,
@@ -51,8 +63,9 @@ const readOptions = ({ filesystem }) => {
     description,
     homepage,
     repository: repository?.url,
-    ...oranda,
     ...cargo,
+    ...oranda,
+    ...metaInCargo,
     ...configFile,
   }
 
