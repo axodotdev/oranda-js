@@ -1,7 +1,7 @@
 {
   "name": "oranda",
   "description": "Create beautiful and simple HTML pages from your Readme.md files",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "bin": {
     "oranda": "bin/oranda.js"
   },
