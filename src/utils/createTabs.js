@@ -4,7 +4,7 @@ const { syntaxThemeToUse } = require('./syntaxHighlightThemes')
 const createTabs = async ({ options, filesystem }) => {
   const shikiThemes = syntaxThemeToUse({ filesystem })
   const format = await shiki.getHighlighter(shikiThemes)
-  if (!options.downloads) return
+  if (!options.downloads) return ''
   return /*html*/ `
     <h2 class="text-center">Download for your platform</h2>
     <div class="tabs">
