@@ -1,3 +1,5 @@
+
+
 /* GENERAL  */
 
 html,
@@ -8,15 +10,14 @@ body,
   min-height: 100%;
   margin: 0;
   padding: 0;
-}
-
-html {
+  color: var(--text);
+  
+  background-color: var(--bg);
   scroll-behavior: smooth;
 }
 
 body {
-  margin-top: -20px;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--sans-serif-font);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
@@ -32,6 +33,14 @@ body {
   }
 }
 
+a {
+  color: var(--link);
+}
+
+nav a, .anchor svg path {
+  color: var(--text);
+}
+
 iframe {
   margin: 20px 0;
 }
@@ -40,9 +49,7 @@ iframe {
 
 code {
   font-size: 18px;
-  background: rgba(0, 0, 0, 0.05);
   border-radius: 2px;
-  color: rgba(0, 0, 0, 0.84);
   line-height: 1.5;
   display: initial;
 }
@@ -72,14 +79,13 @@ a {
 }
 
 blockquote {
-
   font-size: 30px;
   font-style: italic;
   letter-spacing: -0.36px;
   line-height: 44.4px;
   overflow-wrap: break-word;
   margin: 55px 0 33px 0;
-  color: rgba(0, 0, 0, 0.68);
+  color: var(--text-800);
   padding: 0 0 0 50px;
 }
 
@@ -90,6 +96,7 @@ mark,
 
 ::selection {
   background-color: lavender;
+  color: var(--text);
 }
 
 /* HEADER */
@@ -134,7 +141,6 @@ h2,
 p,
 i,
 a {
-  color: rgba(0, 0, 0, 0.84);
   text-rendering: optimizeLegibility;
 }
 
@@ -156,7 +162,8 @@ h4,
 h5,
 h6 {
   font-weight: bold;
-  font-family: 'comfortaa', serif;
+  font-family: var(--sans-serif-font);
+
 }
 
 .anchor {
@@ -181,14 +188,15 @@ h6 {
 
 .shiki {
   padding: 1em;
+  border-radius: 4px;
 }
+
 
 table,
 tr,
 td {
-
   border-collapse: collapse;
-  background-color: #f0f0f0;
+  background-color: var(--table-bg);
 }
 
 table {
@@ -203,7 +211,7 @@ table {
 
     tr {
       &:not(:last-of-type) {
-        border-bottom: 1px solid #e4e4e7;
+        border-bottom: 1px solid var(--table-border);
       }
 
       td:first-child {
@@ -214,12 +222,12 @@ table {
 
   thead {
     th {
-      background-color: #27272a;
+      background-color: var(--table-header-bg);
       padding: 1em;
-      color: #fafafa;
+      color: var(--table-bg);
 
       a {
-        color: #fafafa;
+        color: var(--table-bg);
       }
 
     }
