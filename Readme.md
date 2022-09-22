@@ -47,7 +47,7 @@ If you just want a quick fancy HTML page from the Readme but don't care about ru
 <!-- markdownlint-enable -->
 
 ```bash
-  npx oranda
+npx oranda
 ```
 
 By running this in the root folder you will also get a public folder
