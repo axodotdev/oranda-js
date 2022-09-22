@@ -2,7 +2,7 @@
   "logo": "./logo.svg",
   "favicon": "./logo.ico",
   "additionalFiles": ["./Deployment.md"],
-  "darkTheme": true,
+  "theme": "dark",
   "downloads": {
     "all": {
       "text": "npm install lol"

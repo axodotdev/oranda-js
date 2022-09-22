@@ -6,7 +6,7 @@ module.exports = ({
   remoteStyles = [],
   remoteScripts = [],
   favicon,
-  darkTheme,
+  theme,
   shareCard,
 }) => {
   const metaTags = meta
@@ -65,9 +65,7 @@ module.exports = ({
       : ''
   }
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="${
-    darkTheme ? 'dark' : 'white'
-  }">
+  <meta name="apple-mobile-web-app-status-bar-style" content="${theme}">
   ${metaTags.join('')}
   ${
     remoteStylesCleaned.length

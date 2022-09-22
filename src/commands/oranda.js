@@ -67,8 +67,7 @@ module.exports = {
       }
 
       const repo = options.repository
-      const githubCorner = repo ? corner(repo, options.darkTheme) : ''
-      const dark = options.darkTheme ? 'dark' : 'light'
+      const githubCorner = repo ? corner(repo, options.theme === 'dark') : ''
 
       imageManipulation({ filesystem, distFolder, markdown })
 
@@ -88,7 +87,9 @@ module.exports = {
         css: orandaImports.css,
         lang: 'en',
         head: head(options),
-        body: /*html*/ `<div id="oranda"><div class="body ${dark}"><div class="container">${githubCorner}${header(
+        body: /*html*/ `<div id="oranda"><div class="body ${
+          options.theme
+        }"><div class="container">${githubCorner}${header(
           options
         )}${tabs}${md.render(
           markdown
