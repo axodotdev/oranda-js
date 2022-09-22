@@ -91,9 +91,9 @@ module.exports = {
           options.theme
         }"><div class="container">${githubCorner}${header(
           options
-        )}${tabs}${md.render(
-          markdown
-        )}</div></div><script>${detectOS}</script></div>`,
+        )}${tabs}${md.render(markdown)}</div></div>${
+          options.downloads ? `<script>${detectOS}</script>` : ''
+        }</div>`,
         favicon: options.favicon,
       })
 
