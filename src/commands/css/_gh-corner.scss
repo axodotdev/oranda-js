@@ -1,9 +1,5 @@
 /* GITHUB CORNER */
 
-.github-corner:hover .octo-arm {
-  animation: octocat-wave 560ms ease-in-out;
-}
-
 @keyframes octocat-wave {
   0%,
   100% {
@@ -17,6 +13,10 @@
   80% {
     transform: rotate(10deg);
   }
+}
+
+.github-corner:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
 }
 
 @media (max-width: 500px) {
