@@ -3,55 +3,31 @@
 <br/>
 
 - [Netlify](#netlify)
-- [Now](#now)
+- [Vercel](#vercel)
 - [Surge](#surge)
 - [GitHub Pages](#githubpages)
 - [GitLab Pages](#gitlabpages)
 
 ## Netlify
 
-Head over to https://netlify.com and click on new site from git:
+Head over to [Netlify](https://netlify.com) and click on new site from git:
 
 ![New site from git](./media/netifly1.png)
 
 It will ask you to choose a provider and choose the one you are using. After that it will ask you for what repo it is and after you selected it just select these options on the next screen:
 
-![Deploy Static](./media/netifly2.png)
+- Build command: `npx oranda`
+- Publish directory: `public`
 
 _The public folder may be a different one depending on the dist folder you selected_
 
-## Now
+## Vercel
 
-To use Now, first create a file called `now.json` and put the following options in it:
-
-```json
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@now/static-build",
-      "config": { "distDir": "public" }
-    }
-  ]
-}
-```
-
-_The distDir folder may be a different one depending on the dist folder you selected_
-
-For Now to build oranda when deploying, to ensure a fresh build for each deployment, add the following script to your `package.json` scripts list to let Now know to use oranda to build your readme as the index.
-
-```json
-{
-  "now-build": "oranda"
-}
-```
-
-For more info you can check the [Now docs](https://zeit.co/docs/)
+Vercel is very similar to Netlify, choose your repo and then add `npx oranda` as the build command. If you changed the dist folder select the current one otherwise it defaults to public.
 
 ## Surge
 
-To deploy with Surge you need a http://surge.sh account and then to install the surge cli or like me run with npx.
+To deploy with Surge you need a [Surge](http://surge.sh) account and then to install the surge cli or like me run with npx.
 It will ask you to login and after that it wants to know the project path. In here you put the dist folder.
 After that pick and domain and done 🎉
 
@@ -66,7 +42,7 @@ oranda deploy
 ```
 
 This command will build your project if no version exists and deploy it to `gh-pages` branch on github.
-It uses [gh-pages](https://github.com/tschaub/gh-pages#options) under the hood so any options you pass there you can also pass in your `deployment` option in `.oranda.config.json`.
+It uses [gh-pages](https://github.com/tschaub/gh-pages#options) under the hood so any options you pass there you can also pass in your `deployment` option in your config.
 ✨
 
 ## Gitlab Pages
@@ -85,5 +61,5 @@ pages:
     paths:
       - public
   only:
-    - master
+    - main
 ```

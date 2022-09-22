@@ -32,19 +32,9 @@ npm install oranda --save-dev
   }
 ```
 
-Deploy automatically to netlify 🎉
-
-[This Readme on Netlify](https://oranda.netlify.com/)
-
-[This Readme with white theme](https://5c2678b67b891f18dc5a2a42--oranda.netlify.com/)
-
 ## Usage with npx
 
-<!-- markdownlint-disable -->
-
 If you just want a quick fancy HTML page from the Readme but don't care about running this in continuous deployment you can also use `npx` to run it as a one time thing.
-
-<!-- markdownlint-enable -->
 
 ```bash
 npx oranda
@@ -113,7 +103,7 @@ Let's say you have an app that can be install in several operating systems, you 
 
 Oranda will automatically try to recognize the user OS and highlight the correct OS and highlight that option.
 
-ADD EXAMPLE TO CLI WITH THIS
+There is an example of it on the [CLI for Let's play retro games](https://cli.letsplayretro.games/)
 
 This can also be used to demonstrate different package managers that one can use to install the package:
 
