@@ -3,5 +3,5 @@
   "favicon": "./logo.ico",
   "additionalFiles": ["./Deployment.md"],
   "theme": "dark",
-  "pathPrefix": "oranda"
+  "pathPrefix": "/oranda"
 }
