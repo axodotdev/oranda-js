@@ -1,7 +1,7 @@
 {
   "name": "oranda",
   "description": "Create beautiful and simple HTML pages from your Readme.md files",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "bin": {
     "oranda": "bin/oranda.js"
   },
@@ -37,7 +37,7 @@
     "url": "https://iamsaravieira.com/"
   },
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=12.0.0"
   },
   "license": "MIT",
   "dependencies": {
