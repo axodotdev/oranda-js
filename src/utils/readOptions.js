@@ -2,7 +2,7 @@ const toml = require('toml')
 
 const defaultOptions = {
   dist: 'public',
-  theme: 'light',
+  theme: 'axo',
   noHeader: false,
   file: null,
   name: null,
@@ -19,6 +19,7 @@ const defaultOptions = {
   remoteStyles: [],
   remoteScripts: [],
   syntaxHighlight: {
+    axo: 'rose-pine-moon',
     dark: 'poimandres',
     light: 'github-light',
   },
