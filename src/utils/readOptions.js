@@ -19,6 +19,7 @@ const defaultOptions = {
   remoteStyles: [],
   remoteScripts: [],
   syntaxHighlight: {
+    axo: 'rose-pine-moon',
     dark: 'poimandres',
     light: 'github-light',
   },

@@ -37,14 +37,23 @@ const syntaxThemeToUse = ({ filesystem }) => {
   const darkThemeExists = AVAILABLE_THEMES.includes(
     options.syntaxHighlight.dark
   )
+
+  const axoThemeExists = AVAILABLE_THEMES.includes(options.syntaxHighlight.dark)
   const lightThemeExists = AVAILABLE_THEMES.includes(
     options.syntaxHighlight.light
   )
+
+  const darkThemes = {
+    axo: axoThemeExists
+      ? options.syntaxHighlight.axo
+      : defaultOptions.syntaxHighlight.axo,
+    dark: darkThemeExists
+      ? options.syntaxHighlight.dark
+      : defaultOptions.syntaxHighlight.dark,
+  }
   const shikiThemes = {
     theme: {
-      dark: darkThemeExists
-        ? options.syntaxHighlight.dark
-        : defaultOptions.syntaxHighlight.dark,
+      dark: darkThemes[options.theme],
       light: lightThemeExists
         ? options.syntaxHighlight.light
         : defaultOptions.syntaxHighlight.light,

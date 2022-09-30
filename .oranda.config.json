@@ -2,6 +2,5 @@
   "logo": "./logo.svg",
   "favicon": "./logo.ico",
   "additionalFiles": ["./Deployment.md"],
-  "theme": "dark",
-  "pathPrefix": "/oranda"
+  "theme": "axo"
 }

@@ -67,7 +67,7 @@ module.exports = {
       }
 
       const repo = options.repository
-      const githubCorner = repo ? corner(repo, options.theme === 'dark') : ''
+      const githubCorner = repo ? corner(repo, options.theme !== 'light') : ''
 
       imageManipulation({ filesystem, distFolder, markdown })
 
