@@ -36,6 +36,7 @@
     @apply no-underline;
 
     &:hover {
+      @apply no-underline underline-offset-4;
       color: var(--headings);
       text-decoration-color: var(--headings);
     }
