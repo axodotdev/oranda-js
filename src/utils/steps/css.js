@@ -35,10 +35,7 @@ const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
     })
     .css.toString()
 
-  const config = await import('../../../tailwind.config.js')
-  const postcssOutput = (
-    await postcss([tailwindcss(config.default)]).process(css)
-  ).css
+  const postcssOutput = (await postcss([tailwindcss({})]).process(css)).css
 
   // minify css
   const minifiedCSS = new CleanCSS().minify(postcssOutput).styles
