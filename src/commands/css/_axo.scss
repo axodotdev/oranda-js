@@ -33,19 +33,18 @@
 
   a {
     color: var(--link);
-    text-decoration: none;
+    @apply no-underline;
 
     &:hover {
       color: var(--headings);
       text-decoration-color: var(--headings);
-      text-decoration-line: underline;
-      text-underline-offset: 4px;
     }
   }
 
   blockquote {
     border-left: 2.16px solid rgb(242, 67, 64);
   }
+
   blockquote,
   blockquote p {
     color: var(--text-light);
@@ -75,7 +74,7 @@
 
   .tabs {
     label {
-      box-shadow: none;
+      @apply shadow-none;
       background-color: var(--bg);
     }
   }
@@ -92,8 +91,7 @@ header {
     }
   }
   h1 {
-    line-height: 1;
-    font-size: 6rem;
+    @apply text-8xl leading-none;
     -webkit-text-fill-color: transparent;
     animation-duration: 3s;
     animation-fill-mode: forwards;

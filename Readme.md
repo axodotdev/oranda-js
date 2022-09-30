@@ -155,7 +155,7 @@ In this case you need to override any specificity issues.
 You can by using the `#oranda` id.
 Example:
 
-```css
+```scss
 body {
   background: #fff;
 }

@@ -58,7 +58,7 @@
 
   .tabs {
     label {
-      box-shadow: none;
+      @apply shadow-none;
       background-color: var(--bg);
     }
   }
