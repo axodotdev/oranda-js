@@ -1,38 +1,30 @@
 table {
-  display: block;
-  overflow-x: auto;
+  @apply block overflow-x-auto;
   -webkit-overflow-scrolling: touch;
 
   thead th {
-    padding-bottom: 8px;
+    @apply pb-2;
   }
 
   th {
-    font-weight: 600;
+    @apply font-semibold;
   }
 
   td,
   th {
-    overflow: auto;
+    @apply overflow-auto py-4 px-3 text-left;
     -webkit-overflow-scrolling: touch;
-    padding: 16px 12px;
-    text-align: left;
     vertical-align: top;
   }
 }
 
 label {
-  display: inline-block;
-  margin-bottom: 12px;
+  @apply inline-block mb-3;
 }
 
 html,
 body {
-  font-size: 18px;
-  font-stretch: normal;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 1.25;
+  @apply text-base sm:text-lg leading-relaxed;
 }
 
 pre,
@@ -46,123 +38,86 @@ output {
 
 kbd {
   background: #2a6f3b;
-  color: #fff;
+  color: var(--text);
 }
 
 mark {
-  background: #ffc;
-  padding: 0 4px;
+  background: var(--text);
+  @apply my-1;
+}
+
+p {
+  @apply text-base sm:text-lg leading-relaxed mb-4;
+}
+
+b {
+  @apply text-base sm:text-lg leading-relaxed mb-4;
+}
+
+code {
+  @apply text-base sm:text-lg leading-relaxed mb-4;
 }
 
 h1 {
-  font-size: 1.5rem;
-  line-height: 1.25;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-
-  @media (min-width: 640px) {
-    font-size: 3rem;
-    line-height: 1;
-  }
+  @apply text-2xl sm:text-5xl leading-tight font-bold lowercase mb-6;
 }
 
 h2 {
-  font-size: 1.5rem;
-  line-height: 1.25;
-  margin-bottom: 1rem;
-  @media (min-width: 640px) {
-    font-size: 2.5rem;
-  }
+  @apply text-2xl sm:text-4xl leading-tight mb-4;
 }
 
 h3 {
-  font-size: 1.5rem;
-  line-height: 1.25;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  @media (min-width: 640px) {
-    font-size: 2.25rem;
-  }
+  @apply text-2xl sm:text-3xl leading-tight  mb-4;
 }
 
 h4 {
-  font-size: 18px;
-  line-height: 23.4px;
-  margin-top: 18px;
+  @apply text-xl sm:text-2xl leading-tight font-bold mb-4;
 }
 
 h5 {
-  font-size: 14.4px;
-  font-weight: bold;
-  line-height: 21.6px;
-  text-transform: uppercase;
+  @apply text-xl sm:text-xl leading-tight  font-bold mb-4;
 }
 
 h6 {
-  color: #595959;
-  font-size: 14.4px;
-  font-weight: bold;
-  line-height: 18px;
-  text-transform: uppercase;
-}
-
-a {
-  color: #275a90;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
+  @apply text-xl sm:text-xl leading-tight mb-4;
 }
 
 hr {
-  border-bottom: 1px solid #595959;
+  border-bottom: 1px solid var(--table-header-bg);
 }
 
 small {
-  font-size: 15.3px;
+  @apply text-sm;
 }
 
 var,
 em,
 i {
-  font-style: italic;
+  @apply italic;
 }
 
 dt,
 strong,
 b {
-  font-weight: 600;
+  @apply font-bold;
 }
 
 del,
 s {
-  text-decoration: line-through;
-}
+  @apply line-through;}
 
 ins,
 u {
-  text-decoration: underline;
+  @apply underline;
 }
 
 sub,
 sup {
-  font-size: 75%;
-  line-height: 0;
-  position: relative;
-  vertical-align: baseline;
-}
-
-sup {
-  top: -0.5em;
-}
-
-sub {
-  bottom: -0.25em;
+  @apply relative text-xs;
 }
 
 nav {
-  padding: 0;
+  @apply p-0;
 }
 
 p,
@@ -176,102 +131,90 @@ form,
 fieldset,
 figure,
 address {
-  margin-bottom: 32px;
+  @apply mb-6;
 }
 
 section {
-  margin-left: auto;
-  margin-right: auto;
-  width: 900px;
+  @apply mx-auto;
 }
 
 article,
 header,
 footer {
-  padding: 43.2px;
+  @apply p-10;
 }
 
 nav {
-  text-align: center;
+  @apply text-center;
 
   ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: center;
-    display: flex;
-    gap: 18px;
-    align-items: center;
+    @apply list-none p-0 m-0 flex text-center items-center;
   }
 }
 
 li dl,
 li ol,
 li ul {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 
 dl {
-  display: inline-block;
+  @apply inline-block;
 }
 
 dt {
-  padding: 0 18px;
+  @apply mx-4;
 }
 
 dd {
-  padding: 0 18px 4.5px;
+  @apply mx-4 mr-1;
 }
 
 dd:last-of-type {
-  border-bottom: 1.08px solid #595959;
+  border-bottom: 1px solid #595959;
 }
 
 dd + dt {
-  border-top: 1.08px solid #595959;
-  padding-top: 9px;
+  @apply pt-2;
+  border-top: 1px solid #595959;
 }
 
 blockquote {
-  border-left: 2.16px solid #595959;
-  padding: 4.5px 18px 4.5px 15.84px;
+  @apply py-1 px-4; 
+  border-left: 2px solid #595959;
 
   footer {
-    color: #595959;
-    font-size: 13.5px;
-    margin: 0;
+    @apply text-sm m-0;
   }
 
   p {
-    margin-bottom: 0;
+    @apply mb-0;
   }
 }
 
 img {
-  height: auto;
-  margin: 0 auto;
-  max-width: 100%;
+  @apply h-auto mx-auto my-0 max-w-full;
 }
 
 figure img {
-  display: block;
+  @apply block;
 }
 
 pre {
-  white-space: pre-wrap;
+  @apply whitespace-pre-wrap;
 }
 
 @media (max-width: 767px) {
   header,
   footer {
-    padding: 18px;
+    @apply p-4;
   }
 
   section {
-    width: auto;
+    @apply w-auto;
   }
 
   x:-moz-any-link {
-    display: table-cell;
+    @apply table-cell;
   }
 }

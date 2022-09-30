@@ -1,8 +1,10 @@
 const toCss = require('to-css')
 const path = require('path')
+const tailwindcss = require('tailwindcss')
 const CleanCSS = require('clean-css')
 const sass = require('node-sass')
 const { readOptions } = require('../readOptions')
+const { default: postcss } = require('postcss')
 
 const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
   const { options } = readOptions({ filesystem })
@@ -33,8 +35,13 @@ const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
     })
     .css.toString()
 
+  const config = await import('../../../tailwind.config.js')
+  const postcssOutput = (
+    await postcss([tailwindcss(config.default)]).process(css)
+  ).css
+
   // minify css
-  const minifiedCSS = new CleanCSS().minify(css).styles
+  const minifiedCSS = new CleanCSS().minify(postcssOutput).styles
 
   // write the css
   await filesystem.write(`${distFolder}/style.css`, minifiedCSS)

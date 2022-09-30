@@ -49,7 +49,7 @@ iframe {
 
 code {
   font-size: 18px;
-  border-radius: 2px;
+  border-radius: 4px;
   line-height: 1.5;
   display: initial;
 }
@@ -60,18 +60,9 @@ code {
   justify-content: center;
 }
 
-p,
-i,
-a,
-li {
-  margin-top: 21px;
-  font-size: 21px;
-  letter-spacing: -0.03px;
-  line-height: 1.58;
-}
 
 li {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 a {
@@ -81,12 +72,11 @@ a {
 blockquote {
   font-size: 30px;
   font-style: italic;
-  letter-spacing: -0.36px;
-  line-height: 44.4px;
+  line-height: 1.25;
   overflow-wrap: break-word;
-  margin: 55px 0 33px 0;
+  margin: 56px 0 36px 0;
   color: var(--text-800);
-  padding: 0 0 0 50px;
+  padding: 0 0 0 48px;
 }
 
 mark,
@@ -135,7 +125,7 @@ h3 {
   display: flex;
   align-items: center;
 
-  >a {
+  > a {
     margin-top: 0;
   }
 }
@@ -152,7 +142,7 @@ h6 {
 }
 
 .anchor {
-  padding-right: 10px;
+  padding-right: 8px;
   margin: 0;
 }
 
@@ -172,7 +162,7 @@ h6 {
 
 
 .shiki {
-  padding: 1em;
+  padding: 16px;
   border-radius: 4px;
 }
 
@@ -191,7 +181,7 @@ table {
 
     td,
     th {
-      padding: 1em;
+      padding: 16px;
     }
 
     tr {
@@ -208,7 +198,7 @@ table {
   thead {
     th {
       background-color: var(--table-header-bg);
-      padding: 1em;
+      padding: 16px;
       color: var(--table-bg);
 
       a {
