@@ -25,13 +25,14 @@ const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
 
   // Get normalize and google fonts
   const remoteStyles = await getRemoteStyles()
-
   // Transform sass to css
   const css = sass
     .renderSync({
-      data: remoteStyles
-        .concat(filesystem.read(path.join(scssPath, 'style.scss')))
-        .concat(getAdditionalStyles()),
+      data: [
+        remoteStyles,
+        getAdditionalStyles(),
+        filesystem.read(path.join(scssPath, 'style.scss')),
+      ].join(''),
       includePaths: [scssPath],
     })
     .css.toString()
