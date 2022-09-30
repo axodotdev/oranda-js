@@ -39,6 +39,16 @@ test('generates dark', async () => {
 
   expect(html).toContain('<div class="body dark">')
 })
+test('generates light', async () => {
+  process.chdir('./__tests__/test-readme/light/')
+
+  const output = await cli()
+
+  expect(output).toContain(success)
+  const html = filesystem.read('public/index.html')
+
+  expect(html).toContain('<div class="body light">')
+})
 
 test('reads config from package.json', async () => {
   process.chdir('./__tests__/test-readme/package-json')

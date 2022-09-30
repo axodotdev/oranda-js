@@ -2,17 +2,5 @@
   "logo": "./logo.svg",
   "favicon": "./logo.ico",
   "additionalFiles": ["./Deployment.md"],
-  "downloads": {
-    "linux": {
-      "link": "https://my-app.com/my-app-x86_64-unknown-linux-musl.tar.gz",
-      "description": "this is my description if I want one",
-      "changelog": "https://my-app.com/changelog.md"
-    },
-    "windows": {
-      "link": "https://my-app.com/my-app-x86_64-pc-windows-msvc.tar.gz"
-    },
-    "mac": {
-      "link": "https://my-app.com/my-app-x86_64-apple-darwin.tar.gz"
-    }
-  }
+  "theme": "light"
 }
