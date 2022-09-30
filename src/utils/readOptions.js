@@ -2,7 +2,7 @@ const toml = require('toml')
 
 const defaultOptions = {
   dist: 'public',
-  theme: 'light',
+  theme: 'axo',
   noHeader: false,
   file: null,
   name: null,
