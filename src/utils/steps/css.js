@@ -2,7 +2,6 @@ const toCss = require('to-css')
 const path = require('path')
 const CleanCSS = require('clean-css')
 const sass = require('node-sass')
-const getRemoteStyles = require('../remoteStyles')
 const { readOptions } = require('../readOptions')
 
 const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
@@ -23,15 +22,12 @@ const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
     })
   }
 
-  // Get normalize and google fonts
-  const remoteStyles = await getRemoteStyles()
   // Transform sass to css
   const css = sass
     .renderSync({
       data: [
-        remoteStyles,
-        getAdditionalStyles(),
         filesystem.read(path.join(scssPath, 'style.scss')),
+        getAdditionalStyles(),
       ].join(''),
       includePaths: [scssPath],
     })
