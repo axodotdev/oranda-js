@@ -6,7 +6,7 @@ html,
 body,
 .body,
 #oranda {
-  @apply w-full min-h-full m-0 p-0 scroll-smooth;
+  @apply w-full min-h-full m-0 p-0 scroll-smooth text-base;
   color: var(--text);
   
   background-color: var(--bg);
@@ -23,7 +23,7 @@ body {
 
   .container {
     @apply m-auto;
-    width: 1100px;
+    width: 1000px;
     max-width: 80%;
   }
 }
@@ -117,14 +117,23 @@ h3,
 h4,
 h5,
 h6 {
-  @apply font-bold;
+  @apply font-bold relative mt-4;
   font-family: var(--serif-font);
 
+  .anchor {
+    @apply pr-2 m-0 hidden absolute -left-4;
+  }
+
+  &:hover .anchor {
+    display: block;
+  }
+
 }
 
-.anchor {
-  @apply pr-2 m-0;
-}
+
+
+
+
 
 .body.dark .shiki-light, .body.axo .shiki-light {
     @apply hidden;
