@@ -18,14 +18,7 @@ module.exports = ({ logo, pathPrefix, name, noHeader, additionalFiles }) => {
     fileName(file) === 'Home' ? '' : `${fileName(file).toLowerCase()}.html`
 
   return !noHeader
-    ? `<header>${name ? `<h1>${name}</h1>` : ''}${
-        logo !== ''
-          ? `<img class="logo" src="${absolutePath(
-              logo
-            )}" alt="${name} logo" />`
-          : ''
-      }
-      ${
+    ? `<header>${
         additionalFiles.length > 1
           ? `<nav><ul>${additionalFiles
               .map(
@@ -36,7 +29,14 @@ module.exports = ({ logo, pathPrefix, name, noHeader, additionalFiles }) => {
               )
               .join('')}</ul></nav>`
           : ''
+      }${name ? `<h1>${name}</h1>` : ''}${
+        logo !== ''
+          ? `<img class="logo" src="${absolutePath(
+              logo
+            )}" alt="${name} logo" />`
+          : ''
       }
+      
       </header>`
     : ''
 }

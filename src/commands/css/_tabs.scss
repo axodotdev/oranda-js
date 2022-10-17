@@ -1,24 +1,13 @@
 .tabs {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;
-  margin: 20px auto 80px;
-  max-width: 500px;
+  @apply flex flex-wrap items-stretch justify-center max-w-lg mt-5 mb-20 mx-auto;
 
   .tab {
-    order: 9;
-    flex-grow: 1;
-    width: 100%;
-    height: 100%;
-    display: none;
-    padding: 1rem;
+    @apply grow w-full h-full hidden p-4 order-9;
     background-color: var(--table-header-bg);
     color: var(--text-light);
-    padding: 20px;
 
     pre {
-      margin: 0;
+      @apply m-0;
     }
 
     a {
@@ -26,35 +15,24 @@
     }
 
     .description {
-      margin: 0;
-      font-size: 12px;
+      @apply m-0 text-xs;
       color: var( --text-light);
     }
   }
 
   label {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    cursor: pointer;
+    @apply flex justify-center items-center p-4 cursor-pointer font-bold capitalize m-0 text-xl;
     background-color: var(--table-bg);
-    font-weight: bold;
     transition: background ease 0.3s;
     box-shadow: var(--shadow-elevation-medium);
-    text-transform: capitalize;
-    font-weight: 700;
-    margin: 0;
-    font-size: 21px;
 
     a {
-      margin: 0;
-      text-decoration: none;
+      @apply m-0 no-underline;
     }
   }
 
   input[type='radio'] {
-    display: none;
+    @apply hidden;
 
     &:checked + label {
       background-color: var(--table-header-bg);
@@ -65,7 +43,7 @@
       }
 
       & + .tab {
-        display: block;
+        @apply block;
       }
     }
   }
@@ -73,6 +51,6 @@
 
 @media (max-width: 465px) {
   .tabs label {
-    width: 100%;
+    @apply w-full;
   }
 }

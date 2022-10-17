@@ -3,9 +3,9 @@
   --text: #fafafa;
   --bg: #0f172a;
   --link: #f57070;
-  --table-bg: #1e293b;
+  --table-bg: #232136;
   --table-border: #0f172a;
-  --table-header-bg: #0f172a;
+  --table-header-bg: #161e2b;
   --sans-serif-font: 'comfortaa', serif;
 
   color: var(--text);
@@ -14,6 +14,11 @@
 
   .anchor svg path {
     fill: var(--text);
+  }
+
+
+  nav a {
+    color: var(--text);
   }
 
   h1,
@@ -33,19 +38,19 @@
 
   a {
     color: var(--link);
-    text-decoration: none;
+    @apply no-underline;
 
     &:hover {
+      @apply no-underline underline-offset-4;
       color: var(--headings);
       text-decoration-color: var(--headings);
-      text-decoration-line: underline;
-      text-underline-offset: 4px;
     }
   }
 
   blockquote {
     border-left: 2.16px solid rgb(242, 67, 64);
   }
+
   blockquote,
   blockquote p {
     color: var(--text-light);
@@ -75,7 +80,7 @@
 
   .tabs {
     label {
-      box-shadow: none;
+      @apply shadow-none;
       background-color: var(--bg);
     }
   }
@@ -92,8 +97,7 @@ header {
     }
   }
   h1 {
-    line-height: 1;
-    font-size: 6rem;
+    @apply text-8xl leading-none;
     -webkit-text-fill-color: transparent;
     animation-duration: 3s;
     animation-fill-mode: forwards;

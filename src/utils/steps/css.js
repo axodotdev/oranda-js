@@ -1,9 +1,10 @@
 const toCss = require('to-css')
 const path = require('path')
+const tailwindcss = require('tailwindcss')
 const CleanCSS = require('clean-css')
 const sass = require('node-sass')
-const getRemoteStyles = require('../remoteStyles')
 const { readOptions } = require('../readOptions')
+const { default: postcss } = require('postcss')
 
 const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
   const { options } = readOptions({ filesystem })
@@ -23,21 +24,23 @@ const transformCSS = async ({ filesystem, distFolder, scssPath }) => {
     })
   }
 
-  // Get normalize and google fonts
-  const remoteStyles = await getRemoteStyles()
-
   // Transform sass to css
   const css = sass
     .renderSync({
-      data: remoteStyles
-        .concat(filesystem.read(path.join(scssPath, 'style.scss')))
-        .concat(getAdditionalStyles()),
+      data: [
+        filesystem.read(path.join(scssPath, 'style.scss')),
+        getAdditionalStyles(),
+      ].join(''),
       includePaths: [scssPath],
     })
     .css.toString()
 
+  const postcssOutput = (
+    await postcss([tailwindcss({})]).process(css, { from: undefined })
+  ).css
+
   // minify css
-  const minifiedCSS = new CleanCSS().minify(css).styles
+  const minifiedCSS = new CleanCSS().minify(postcssOutput).styles
 
   // write the css
   await filesystem.write(`${distFolder}/style.css`, minifiedCSS)

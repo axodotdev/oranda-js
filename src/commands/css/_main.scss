@@ -6,14 +6,10 @@ html,
 body,
 .body,
 #oranda {
-  width: 100%;
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
+  @apply w-full min-h-full m-0 p-0 scroll-smooth text-base;
   color: var(--text);
   
   background-color: var(--bg);
-  scroll-behavior: smooth;
 }
 
 body {
@@ -22,14 +18,13 @@ body {
   -moz-osx-font-smoothing: grayscale;
 
   .body {
-    padding-top: 40px;
-    padding-bottom: 60px;
+    @apply pt-10 pb-16;
   }
 
   .container {
-    width: 1100px;
+    @apply m-auto;
+    width: 1000px;
     max-width: 80%;
-    margin: auto;
   }
 }
 
@@ -42,51 +37,33 @@ nav a, .anchor svg path {
 }
 
 iframe {
-  margin: 20px 0;
+  @apply my-5;
 }
 
 /* CODE */
 
 code {
-  font-size: 18px;
-  border-radius: 2px;
-  line-height: 1.5;
-  display: initial;
+  @apply rounded-md leading-5;
 }
 
 /* TEXT */
 
 .text-center {
-  justify-content: center;
+  @apply justify-center;
 }
 
-p,
-i,
-a,
-li {
-  margin-top: 21px;
-  font-size: 21px;
-  letter-spacing: -0.03px;
-  line-height: 1.58;
-}
 
 li {
-  margin-top: 10px;
+  @apply mt-2;
 }
 
 a {
-  text-decoration: underline;
+  @apply underline;
 }
 
 blockquote {
-  font-size: 30px;
-  font-style: italic;
-  letter-spacing: -0.36px;
-  line-height: 44.4px;
-  overflow-wrap: break-word;
-  margin: 55px 0 33px 0;
+  @apply text-2xl italic leading-5 break-words p-0 pl-10 mt-12 mb-8;
   color: var(--text-800);
-  padding: 0 0 0 50px;
 }
 
 mark,
@@ -102,39 +79,19 @@ mark,
 /* HEADER */
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  padding: 0;
-  margin-bottom: 20px;
+  @apply flex items-center justify-center flex-col p-0 mb-5;
 
   .logo {
+    @apply my-5;
     max-width: 300px;
-    margin: 20px 0;
   }
 
   h1 {
-    text-transform: capitalize;
+    @apply capitalize;
   }
 }
 
-/* HEADINGS */
 
-h1 {
-  font-size: 48px;
-  text-align: left;
-  margin-bottom: 8px;
-}
-
-h2 {
-  font-size: 26px;
-  font-weight: 700;
-  padding: 0;
-  text-align: left;
-  line-height: 34.5px;
-  letter-spacing: -0.45px;
-}
 
 h1,
 h2,
@@ -147,11 +104,10 @@ a {
 h1,
 h2,
 h3 {
-  display: flex;
-  align-items: center;
+  @apply flex items-center;
 
-  >a {
-    margin-top: 0;
+  > a {
+    @apply mt-0;
   }
 }
 
@@ -161,52 +117,56 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: bold;
+  @apply font-bold relative mt-4;
   font-family: var(--serif-font);
 
+  .anchor {
+    @apply pr-2 m-0 hidden absolute -left-4;
+  }
+
+  &:hover .anchor {
+    display: block;
+  }
+
 }
 
-.anchor {
-  padding-right: 10px;
-  margin: 0;
-}
+
+
+
+
 
 .body.dark .shiki-light, .body.axo .shiki-light {
-  display: none;
+    @apply hidden;
 }
 
 .body.light .shiki-dark {
-  display: none;
+    @apply hidden;
 }
 
 #oranda .body pre:not([class]) {
-  background-color: transparent;
-  padding-left: 0;
-  margin: 0;
+  @apply pl-0 m-0 bg-transparent;
 }
 
 
 .shiki {
-  padding: 1em;
-  border-radius: 4px;
+  @apply p-4 rounded;
 }
 
 
 table,
 tr,
 td {
-  border-collapse: collapse;
+  @apply border-collapse;
   background-color: var(--table-bg);
 }
 
 table {
-  border-radius: 8px;
-
+  @apply rounded-lg;
   tbody {
 
     td,
     th {
-      padding: 1em;
+      @apply p-4;
     }
 
     tr {
@@ -215,15 +175,15 @@ table {
       }
 
       td:first-child {
-        font-weight: 600;
+        @apply font-semibold;
       }
     }
   }
 
   thead {
     th {
+      @apply p-4;
       background-color: var(--table-header-bg);
-      padding: 1em;
       color: var(--table-bg);
 
       a {

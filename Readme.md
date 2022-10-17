@@ -56,20 +56,20 @@ It can contain the following options:
 
 | Option          | Default                                        | Description                                                                                                                                                       |
 | --------------- | ---------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| file            | Readme.md, readme.md, or README.md             | Your Readme.md name                                                                                                                                               |
-| name            | name in package.json/Cargo.toml                | The project name that is in the title and the header                                                                                                              |
+| file            | `Readme.md`, `readme.md`, or `README.md`       | Your Readme.md name                                                                                                                                               |
+| name            | name in `package.json`/`Cargo.toml`            | The project name that is in the title and the header                                                                                                              |
 | logo            | `''`                                           | The project logo that is in the header                                                                                                                            |
 | shareCard       | `''`                                           | URL to social media preview image for meta tags (recommended size: 1200x628, URL cannot be relative)                                                              |
-| description     | description in package.json/Cargo.toml         | The project description for meta tags                                                                                                                             |
-| homepage        | homepage in package.json/Cargo.toml            | The project homepage for meta tags                                                                                                                                |
+| description     | description in `package.json`/`Cargo.toml`     | The project description for meta tags                                                                                                                             |
+| homepage        | homepage in `package.json`/`Cargo.toml`        | The project homepage for meta tags                                                                                                                                |
 | noHeader        | `false`                                        | Show no header and just the markdown content                                                                                                                      |
 | theme           | `light`                                        | Options are `light`, `dark`and `àxo                                                                                                                               |
 | syntaxHighlight | `{ dark: 'poimandres', light: 'github-light'}` | What syntax highlight theme to use in dark and light mode. All [shikijs themes](https://github.com/shikijs/shiki/blob/main/docs/themes.md#all-themes) can be used |
 | favicon         | `''`                                           | Favicon url or local path                                                                                                                                         |
-| dist            | public                                         | To what folder to render your HTML                                                                                                                                |
+| dist            | `public`                                       | To what folder to render your HTML                                                                                                                                |
 | styles          | `{}`                                           | Styles to apply to the page. Object or path to css/scss file                                                                                                      |
 | additionalFiles | `[]`                                           | Any other pages to create. It expects an array of paths of markdown files                                                                                         |
-| repository      | repo in package.json/Cargo.toml                | Link to point the github corner                                                                                                                                   |
+| repository      | repo in `package.json`/`Cargo.toml`            | Link to point the github corner                                                                                                                                   |
 | pathPrefix      | Environment var `PATH_PREFIX` or `/`           | Host your oranda files at e.g. /my-oranda-project                                                                                                                 |
 | meta            | `[]`                                           | Any extra meta tags you would like                                                                                                                                |
 | remoteStyles    | `[]`                                           | Array of any remote styles you want to include (eg: Google Fonts)                                                                                                 |
@@ -155,7 +155,7 @@ In this case you need to override any specificity issues.
 You can by using the `#oranda` id.
 Example:
 
-```css
+```scss
 body {
   background: #fff;
 }

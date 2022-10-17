@@ -10,3 +10,4 @@ package.lock
 .eslintcache
 
 .vercel
+tailwind.config.js
